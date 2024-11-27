@@ -37,7 +37,7 @@ class TagListView(APIView):
         tags = Tag.objects.all()
         serializer = TagSerializer(tags, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
-    
+
     def post(self, request):
         serializer = GenreSerializer(data=request.data)
         if serializer.is_valid():
@@ -52,17 +52,17 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
 
 
-# Другая реализация 
-# class TagViewSet(viewsets.ModelViewSet):
-#     '''Вьюсет для создания, чтения, изменения и удаления тегов.'''
-#     queryset = Tag.objects.all()
-#     serializer_class = TagSerializer
+# Другая реализация
+class TagViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удаления тегов.'''
+    queryset = Tag.objects.all()
+    serializer_class = TagSerializer
 
 
-# class GenreViewSet(viewsets.ModelViewSet):
-#     '''Вьюсет для создания, чтения, изменения и удалениях жанров.'''
-#     queryset = Genre.objects.all()
-#     serializer_class = GenreSerializer
+class GenreViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удалениях жанров.'''
+    queryset = Genre.objects.all()
+    serializer_class = GenreSerializer
 
 
 class MovieViewSet(viewsets.ModelViewSet):
