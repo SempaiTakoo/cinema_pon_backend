@@ -1,10 +1,20 @@
 from django.shortcuts import render
+
+from rest_framework import viewsets
+from rest_framework import exceptions
 from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from .models import Genre, Tag
-from .serializers import GenreSerializer, TagSerializer
+
+from .models import Comment, Tag, Genre, Movie
+from .serializers import (
+    CommentSerializer,
+    GenreSerializer,
+    TagSerializer,
+    MovieReadSerializer,
+    MovieWriteSerializer
+)
 
 class GenreListView(APIView):
     renderer_classes = [JSONRenderer]
@@ -34,3 +44,36 @@ class TagListView(APIView):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+class CommentViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удаления комментариев.'''
+    queryset = Comment.objects.all()
+    serializer_class = CommentSerializer
+
+
+# Другая реализация 
+# class TagViewSet(viewsets.ModelViewSet):
+#     '''Вьюсет для создания, чтения, изменения и удаления тегов.'''
+#     queryset = Tag.objects.all()
+#     serializer_class = TagSerializer
+
+
+# class GenreViewSet(viewsets.ModelViewSet):
+#     '''Вьюсет для создания, чтения, изменения и удалениях жанров.'''
+#     queryset = Genre.objects.all()
+#     serializer_class = GenreSerializer
+
+
+class MovieViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удаления фильмов.'''
+    queryset = Movie.objects.all()
+
+    def get_serializer_class(self):
+        if self.action in ('retrieve', 'list'):
+            return MovieReadSerializer
+        if self.action in ('create', 'update'):
+            return MovieWriteSerializer
+        raise exceptions.NotFound(
+            f'Не найден сериализатор для действия {self.action}'
+        )
