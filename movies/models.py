@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 TAG_NAME_MAX_LEN = 128
 GENRE_NAME_MAX_LEN = 128
 MOVIE_TITLE_MAX_LEN = 128
+DIRECTOR_NAME_MAX_LEN = 128
 
 User = get_user_model()
 
@@ -57,6 +58,24 @@ class Genre(models.Model):
         return self.name
 
 
+class Director(models.Model):
+    '''Модель режиссёра.'''
+    first_name = models.CharField(
+        verbose_name='Имя',
+        max_length=DIRECTOR_NAME_MAX_LEN
+    )
+    last_name = models.CharField(
+        verbose_name='Фамилия',
+        max_length=DIRECTOR_NAME_MAX_LEN
+    )
+    class Meta:
+        verbose_name = 'Режиссёр',
+        verbose_name_plural = 'Режиссёры'
+
+    def __str__(self):
+        return f'{self.first_name} {self.last_name}'
+    
+
 class MovieGenre(models.Model):
     '''Модель связи фильмов и жанров.'''
     movie = models.ForeignKey(
@@ -71,17 +90,42 @@ class MovieGenre(models.Model):
     )
 
 
+class MovieDirector(models.Model):
+    '''Связь между фильмом и режисёром.'''
+    movie = models.ForeignKey(
+        verbose_name='Фильм',
+        to='Movie',
+        on_delete=models.CASCADE
+    )
+    director = models.ForeignKey(
+        verbose_name='Режимссёр',
+        to='Director',
+        on_delete=models.CASCADE
+    )
+
+
 class Movie(models.Model):
     '''Модель фильма.'''
     title = models.CharField(
         verbose_name='Название',
         max_length=MOVIE_TITLE_MAX_LEN
     )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True,
+        null=True
+    )
     genres = models.ManyToManyField(
         verbose_name='Жанры',
         to='Genre',
         through=MovieGenre,
         related_name='genres'
+    )
+    director = models.ManyToManyField(
+        verbose_name='Режиссёры',
+        to='Director',
+        through=MovieDirector,
+        related_name='directors'
     )
 
     class Meta:
