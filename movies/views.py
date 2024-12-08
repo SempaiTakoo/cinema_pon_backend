@@ -1,7 +1,6 @@
 from django.shortcuts import render
 
 from rest_framework import viewsets
-from rest_framework import exceptions
 from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -11,9 +10,8 @@ from .models import Comment, Tag, Genre, Movie
 from .serializers import (
     CommentSerializer,
     GenreSerializer,
-    TagSerializer,
-    MovieReadSerializer,
-    MovieWriteSerializer
+    MovieSerializer,
+    TagSerializer
 )
 
 class GenreListView(APIView):
@@ -68,12 +66,4 @@ class GenreViewSet(viewsets.ModelViewSet):
 class MovieViewSet(viewsets.ModelViewSet):
     '''Вьюсет для создания, чтения, изменения и удаления фильмов.'''
     queryset = Movie.objects.all()
-
-    def get_serializer_class(self):
-        if self.action in ('retrieve', 'list'):
-            return MovieReadSerializer
-        if self.action in ('create', 'update'):
-            return MovieWriteSerializer
-        raise exceptions.NotFound(
-            f'Не найден сериализатор для действия {self.action}'
-        )
+    serializer_class = MovieSerializer

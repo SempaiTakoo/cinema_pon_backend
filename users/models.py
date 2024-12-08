@@ -4,6 +4,7 @@ from django.db import models
 USERNAME_MAX_LEN = 64
 PASSWORD_MAX_LEN = 64
 
+
 class User(AbstractUser):
     '''Модель пользователя.'''
     username = models.CharField(
