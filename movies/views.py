@@ -6,11 +6,13 @@ from rest_framework.renderers import JSONRenderer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
+from rest_framework.pagination import PageNumberPagination
 
-from .models import Comment, Tag, Genre, Movie
+from .models import Comment, Tag, Genre, Director, Movie
 from .serializers import (
     CommentSerializer,
     GenreSerializer,
+    DirectorSerializer,
     TagSerializer,
     MovieReadSerializer,
     MovieWriteSerializer
@@ -39,12 +41,27 @@ class TagListView(APIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def post(self, request):
-        serializer = GenreSerializer(data=request.data)
+        serializer = TagSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
+class DirectorListView(APIView):
+    renderer_classes = [JSONRenderer]
+
+    def get(self, request):
+        directors = Director.objects.all()
+        serializer = DirectorSerializer(directors, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request):
+        serializer = DirectorSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    
 
 class CommentViewSet(viewsets.ModelViewSet):
     '''Вьюсет для создания, чтения, изменения и удаления комментариев.'''
@@ -53,25 +70,46 @@ class CommentViewSet(viewsets.ModelViewSet):
 
 
 # Другая реализация
+
+class Pagination(PageNumberPagination):
+    '''Класс для настройки пагинации'''
+    page_size = 100
+    page_size_query_param = 'page_size'
+    max_page_size = 1000
+
+
 class TagViewSet(viewsets.ModelViewSet):
     '''Вьюсет для создания, чтения, изменения и удаления тегов.'''
-    queryset = Tag.objects.all()
+    queryset = Tag.objects.all().order_by('id')
     serializer_class = TagSerializer
+    pagination_class = Pagination
+
 
 
 class GenreViewSet(viewsets.ModelViewSet):
-    '''Вьюсет для создания, чтения, изменения и удалениях жанров.'''
-    queryset = Genre.objects.all()
+    '''Вьюсет для создания, чтения, изменения и удаления жанров.'''
+    queryset = Genre.objects.all().order_by('id')
     serializer_class = GenreSerializer
+    pagination_class = Pagination
 
+
+
+class DirectorViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удаления режиссёров.'''
+    queryset = Director.objects.all().order_by('id')
+    serializer_class = DirectorSerializer
+    pagination_class = Pagination
 
 class MovieViewSet(viewsets.ModelViewSet):
     '''Вьюсет для создания, чтения, изменения и удаления фильмов.'''
     queryset = Movie.objects.all()
 
     def get_serializer_class(self):
+        print('1')
         if self.action in ('retrieve', 'list'):
+            print('2')
             return MovieReadSerializer
+        print('help')
         if self.action in ('create', 'update'):
             return MovieWriteSerializer
         raise exceptions.NotFound(
