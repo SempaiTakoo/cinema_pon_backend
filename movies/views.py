@@ -105,11 +105,8 @@ class MovieViewSet(viewsets.ModelViewSet):
     queryset = Movie.objects.all()
 
     def get_serializer_class(self):
-        print('1')
         if self.action in ('retrieve', 'list'):
-            print('2')
             return MovieReadSerializer
-        print('help')
         if self.action in ('create', 'update'):
             return MovieWriteSerializer
         raise exceptions.NotFound(
