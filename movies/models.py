@@ -69,7 +69,7 @@ class Director(models.Model):
         max_length=DIRECTOR_NAME_MAX_LEN
     )
     class Meta:
-        verbose_name = 'Режиссёр',
+        verbose_name = 'Режиссёр'
         verbose_name_plural = 'Режиссёры'
 
     def __str__(self):
@@ -121,7 +121,7 @@ class Movie(models.Model):
         through=MovieGenre,
         related_name='genres'
     )
-    director = models.ManyToManyField(
+    directors = models.ManyToManyField(
         verbose_name='Режиссёры',
         to='Director',
         through=MovieDirector,
