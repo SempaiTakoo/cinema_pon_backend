@@ -1,30 +1,11 @@
 from django.db import models
-from django.contrib.auth import get_user_model
+
+from users.models import User
 
 
 TAG_NAME_MAX_LEN = 128
 GENRE_NAME_MAX_LEN = 128
 MOVIE_TITLE_MAX_LEN = 128
-
-User = get_user_model()
-
-
-class Comment(models.Model):
-    '''Модель комментария.'''
-    text = models.TextField(
-        verbose_name='Текст'
-    )
-    author = models.ForeignKey(
-        verbose_name='Автор',
-        to=User,
-        null=True,
-        on_delete=models.CASCADE,
-        related_name='comments'
-    )
-
-    class Meta:
-        verbose_name = 'Комментарий'
-        verbose_name_plural = 'Комментарии'
 
 
 class Tag(models.Model):
@@ -106,7 +87,7 @@ class MovieTags(models.Model):
     )
 
 
-class UserMovieComment(models.Model):
+class Comment(models.Model):
     '''Модель связи комментария пользователя к фильму.'''
     author = models.ForeignKey(
         verbose_name='Автор',
@@ -119,8 +100,15 @@ class UserMovieComment(models.Model):
         to=Movie,
         on_delete=models.CASCADE
     )
-    comment = models.ForeignKey(
-        verbose_name='Комментарий',
-        to=Comment,
-        on_delete=models.CASCADE
+    text = models.TextField(
+        verbose_name='Текст'
     )
+    created_at = models.DateTimeField(
+        verbose_name='Время публикации',
+        auto_now_add=True
+    )
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'
+        ordering = ('-created_at',)
