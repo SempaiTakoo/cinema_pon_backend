@@ -1,11 +1,8 @@
-from django.contrib.auth import get_user_model
+from rest_framework import serializer
 
-from rest_framework import serializers
+from users.models import User
 
-from .models import Comment, MovieGenre, Tag, Genre, Movie, Comment
-
-
-User = get_user_model()
+from .models import Comment, MovieGenre, Tag, Genre, Movie, Director, UserMovieComment
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -29,7 +26,24 @@ class GenreSerializer(serializers.ModelSerializer):
             'name'
         )
 
+class DirectorSerializer(serializers.ModelSerializer):
+    '''Сериализатор для создания и изменения режиссёров.'''
 
+    class Meta:
+        model = Director
+        fields = (
+            'id',
+            'first_name',
+            'last_name'
+        )
+
+        
+class MovieReadSerializer(serializers.ModelSerializer):
+    '''Сериализатор для чтения фильмов.'''
+    genres = GenreSerializer(many=True)
+    directors = DirectorSerializer(many=True)
+
+  
 class CommentSerializer(serializers.ModelSerializer):
     '''Сериализатор для создания и чтения комментариев.'''
     author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
@@ -56,40 +70,90 @@ class MovieSerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'title',
+            'description',
             'genres',
+            'directors',
             'comments'
         )
         read_only_fields = (
+            'id',
+            'title',
+            'description',
             'genres',
-            # 'comments'
+            'directors',
+            'comments'
         )
 
     def get_comments(self, obj):
-        comments = Comment.objects.filter(movie=obj).select_related('author')
-        return [
-            {
-                "author": comment.author.username,
-                "text": comment.text
-            }
-            for comment in comments
-        ]
+        return UserMovieComment.objects.filter(movie=obj)
 
-    def _set_genres(self, movie, genres_data):
+
+class MovieWriteSerializer(serializers.ModelSerializer):
+    '''Сериализатор для создания и изменения фильмов.'''
+    genres = serializers.ListField(child=serializers.IntegerField(), write_only=True)
+    directors = serializers.ListField(child=serializers.IntegerField(), write_only=True)
+
+    class Meta:
+        model = Movie
+        fields = (
+            'id',
+            'title',
+            'description',
+            'genres',
+            'directors'
+        )
+        extra_kwargs = {
+            'title': {'write_only': True},
+            'description': {'write_only': True},
+            'genres': {'write_only': True},
+            'directors': {'write_only': True}
+        }
+
+    def _set_genres(self, movie, genre_ids):
+#             'genres',
+#             'comments'
+#         )
+
+#     def get_comments(self, obj):
+#         comments = Comment.objects.filter(movie=obj).select_related('author')
+#         return [
+#             {
+#                 "author": comment.author.username,
+#                 "text": comment.text
+#             }
+#             for comment in comments
+#         ]
+
+#     def _set_genres(self, movie, genres_data):
         '''Создаёт в базе данных информацию о связи между фильмом и жанрами.'''
 
         for genre in genres_data:
             MovieGenre.objects.update_or_create(movie=movie, genre=genre)
 
+    def _set_directors(self, movie, director_ids):
+        '''Создаёт в базе данных информацию о связи между фильмом и директором.'''
+        directors = Director.objects.filter(id__in=director_ids)
+        movie.directors.set(directors)
+
     def create(self, validated_data):
-        genres_data = validated_data.pop('genres')
+        genre_ids = validated_data.pop('genres',[])
+        director_ids = validated_data.pop('directors',[])
         movie = Movie.objects.create(**validated_data)
-        self._set_genres(movie, genres_data)
+        self._set_genres(movie, genre_ids)
+        self._set_directors(movie, director_ids)
+#         genres_data = validated_data.pop('genres')
+#         movie = Movie.objects.create(**validated_data)
+#         self._set_genres(movie, genres_data)
         return movie
 
     def update(self, instance, validated_data):
         genre_ids = validated_data.pop('genres', None)
+        director_ids = validated_data.pop('directors', None)
 
         if genre_ids is not None:
             self._set_genres(instance, genre_ids)
+
+        if director_ids is not None:
+            self._set_directors(instance, director_ids)
 
         return instance
