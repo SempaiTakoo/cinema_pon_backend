@@ -1,17 +1,8 @@
-from rest_framework import serializers
-from rest_framework import exceptions
+from rest_framework import serializer
 
-from .models import Comment, Tag, Genre, Movie, Director, UserMovieComment
+from users.models import User
 
-
-class CommentSerializer(serializers.ModelSerializer):
-    '''Сериализатор для создания и чтения комментариев.'''
-
-    class Meta:
-        model = Comment
-        fields = (
-            'text',
-        )
+from .models import Comment, MovieGenre, Tag, Genre, Movie, Director, UserMovieComment
 
 
 class TagSerializer(serializers.ModelSerializer):
@@ -46,10 +37,32 @@ class DirectorSerializer(serializers.ModelSerializer):
             'last_name'
         )
 
+        
 class MovieReadSerializer(serializers.ModelSerializer):
     '''Сериализатор для чтения фильмов.'''
     genres = GenreSerializer(many=True)
     directors = DirectorSerializer(many=True)
+
+  
+class CommentSerializer(serializers.ModelSerializer):
+    '''Сериализатор для создания и чтения комментариев.'''
+    author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    movie = serializers.PrimaryKeyRelatedField(queryset=Movie.objects.all())
+
+    class Meta:
+        model = Comment
+        fields = (
+            'author',
+            'movie',
+            'text'
+        )
+
+
+class MovieSerializer(serializers.ModelSerializer):
+    '''Сериализатор для фильмов.'''
+    genres = serializers.PrimaryKeyRelatedField(
+        queryset=Genre.objects.all(), many=True
+    )
     comments = serializers.SerializerMethodField()
 
     class Meta:
@@ -97,16 +110,25 @@ class MovieWriteSerializer(serializers.ModelSerializer):
         }
 
     def _set_genres(self, movie, genre_ids):
+#             'genres',
+#             'comments'
+#         )
+
+#     def get_comments(self, obj):
+#         comments = Comment.objects.filter(movie=obj).select_related('author')
+#         return [
+#             {
+#                 "author": comment.author.username,
+#                 "text": comment.text
+#             }
+#             for comment in comments
+#         ]
+
+#     def _set_genres(self, movie, genres_data):
         '''Создаёт в базе данных информацию о связи между фильмом и жанрами.'''
-        genres = Genre.objects.filter(id__in=genre_ids)
 
-        if len(genres) != len(genre_ids):
-            wrong_genres = set(genre_ids) - set(genre.id for genre in genres)
-            raise exceptions.ValidationError(
-                f'Неверные или несуществующие ID жанров: {wrong_genres}'
-            )
-
-        movie.genres.set(genres)
+        for genre in genres_data:
+            MovieGenre.objects.update_or_create(movie=movie, genre=genre)
 
     def _set_directors(self, movie, director_ids):
         '''Создаёт в базе данных информацию о связи между фильмом и директором.'''
@@ -119,6 +141,9 @@ class MovieWriteSerializer(serializers.ModelSerializer):
         movie = Movie.objects.create(**validated_data)
         self._set_genres(movie, genre_ids)
         self._set_directors(movie, director_ids)
+#         genres_data = validated_data.pop('genres')
+#         movie = Movie.objects.create(**validated_data)
+#         self._set_genres(movie, genres_data)
         return movie
 
     def update(self, instance, validated_data):
