@@ -9,9 +9,3 @@ class UserViewSet(viewsets.ModelViewSet):
     '''Вьюсет пользователя.'''
     queryset = User.objects.all()
     serializer_class = CustomUserSerializer
-    serializer_class = permissions.AllowAny
-
-    # def get_permissions(self):
-    #     if self.action in ('retrieve', 'update', 'partial_update', 'destroy'):
-    #         return IsAuthorOrAdmin
-    #     return (permissions.IsAdminUser,)
