@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:17.2
+    environment:
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - ./sql:/docker-entrypoint-initdb.d
+      - pgdata:/var/lib/postgresql/data
+    ports:
+      - "${DB_PORT}:5432"
+  
+  django:
+    build: .
+    ports:
+      - "9999:9999"
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:
