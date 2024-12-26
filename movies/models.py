@@ -19,6 +19,7 @@ class Tag(models.Model):
     class Meta:
         verbose_name = 'Тег'
         verbose_name_plural = 'Теги'
+        ordering = ('id',)
 
     def __str__(self):
         return self.name
@@ -34,6 +35,7 @@ class Genre(models.Model):
     class Meta:
         verbose_name = 'Жанр'
         verbose_name_plural = 'Жанры'
+        ordering = ('id',)
 
     def __str__(self):
         return self.name
@@ -52,10 +54,11 @@ class Director(models.Model):
     class Meta:
         verbose_name = 'Режиссёр'
         verbose_name_plural = 'Режиссёры'
+        ordering = ('id',)
 
     def __str__(self):
         return f'{self.first_name} {self.last_name}'
-    
+
 
 class MovieGenre(models.Model):
     '''Модель связи фильмов и жанров.'''
@@ -112,6 +115,7 @@ class Movie(models.Model):
     class Meta:
         verbose_name = 'Фильм'
         verbose_name_plural = 'Фильмы'
+        ordering = ('id',)
 
     def __str__(self):
         return self.title
