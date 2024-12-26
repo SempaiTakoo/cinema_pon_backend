@@ -111,8 +111,8 @@ class MovieWriteSerializer(serializers.ModelSerializer):
 
     def _set_genres(self, movie, genre_ids):
         '''Создаёт в базе данных информацию о связи между фильмом и жанрами.'''
-        for genre in genre_ids:
-            MovieGenre.objects.update_or_create(movie=movie, genre=genre)
+        genres = Genre.objects.filter(id__in=genre_ids)
+        movie.genres.set(genres)
 
     def _set_directors(self, movie, director_ids):
         '''
