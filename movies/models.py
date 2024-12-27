@@ -178,7 +178,7 @@ class Comment(models.Model):
 class Rating(models.Model):
     '''Модель рейтинга фильма.'''
     author = models.ForeignKey(
-        verbose_name='Пользователь',
+        verbose_name='Автор',
         to=User,
         on_delete=models.CASCADE
     )
