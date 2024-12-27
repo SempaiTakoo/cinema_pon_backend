@@ -164,6 +164,8 @@ class UserRecommendationsReadSerializer(serializers.ModelSerializer):
 
 class RatingSerializer(serializers.ModelSerializer):
     '''Сериализатор для создания и чтения рейтингов.'''
+    author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    movie = serializers.PrimaryKeyRelatedField(queryset=Movie.objects.all())
     class Meta:
         model = Rating
         fields = ('id', 'rating', 'movie', 'author', 'created_at')
