@@ -5,7 +5,7 @@ from rest_framework.response import Response
 from rest_framework.decorators import action
 
 from .models import (
-    Comment, Tag, Genre, Director,
+    Comment, Tag, Genre, Director, Rating,
     Movie, MovieRecommendations, UserRecommendations
 )
 from .serializers import (
@@ -15,6 +15,7 @@ from .serializers import (
     TagSerializer,
     MovieReadSerializer,
     MovieWriteSerializer,
+    RatingSerializer,
     MovieRecommendationsReadSerializer,
     UserRecommendationsReadSerializer
 )
@@ -117,3 +118,9 @@ class UserRecommendationsViewSet(viewsets.ReadOnlyModelViewSet):
             },
             status=status.HTTP_200_OK
         )
+
+
+class RatingViewSet(viewsets.ModelViewSet):
+    '''Вьюсет для создания, чтения, изменения и удаления рейтингов.'''
+    queryset = Rating.objects.all()
+    serializer_class = RatingSerializer

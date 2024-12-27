@@ -111,7 +111,8 @@ class Movie(models.Model):
         verbose_name='Режиссёры',
         to='Director',
         through=MovieDirector,
-        related_name='directors'
+        related_name='directors',
+        blank=True
     )
 
     class Meta:

@@ -3,7 +3,7 @@ from rest_framework import serializers
 from users.models import User
 
 from .models import (
-    Comment, Tag, Genre, Director,
+    Comment, Rating, Tag, Genre, Director,
     Movie, MovieRecommendations, UserRecommendations
 )
 
@@ -143,10 +143,16 @@ class MovieWriteSerializer(serializers.ModelSerializer):
 class MovieRecommendationsReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = MovieRecommendations
-        fields = ['movie', 'recommendations']
+        fields = ('movie', 'recommendations')
 
 
 class UserRecommendationsReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserRecommendations
-        fields = ['user', 'recommendations']
+        fields = ('user', 'recommendations')
+
+
+class RatingSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rating
+        fields = ('id', 'rating', 'movie', 'author')
