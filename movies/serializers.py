@@ -81,6 +81,9 @@ class MovieReadSerializer(serializers.ModelSerializer):
 
 class MovieWriteSerializer(serializers.ModelSerializer):
     '''Сериализатор для создания и изменения фильмов.'''
+    tags = serializers.ListField(
+        child=serializers.IntegerField(), write_only=True
+    )
     genres = serializers.ListField(
         child=serializers.IntegerField(), write_only=True
     )
@@ -94,12 +97,14 @@ class MovieWriteSerializer(serializers.ModelSerializer):
             'id',
             'title',
             'description',
+            'tags',
             'genres',
             'directors'
         )
         extra_kwargs = {
             'title': {'write_only': True},
             'description': {'write_only': True},
+            'tags': {'write_only': True},
             'genres': {'write_only': True},
             'directors': {'write_only': True}
         }
