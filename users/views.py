@@ -1,8 +1,7 @@
-from rest_framework import permissions, viewsets
+from rest_framework import viewsets
 
 from .models import User
 from .serializers import CustomUserSerializer
-from .permissions import IsAuthorOrAdmin
 
 
 class UserViewSet(viewsets.ModelViewSet):

@@ -41,12 +41,6 @@ class DirectorSerializer(serializers.ModelSerializer):
         )
 
 
-class MovieReadSerializer(serializers.ModelSerializer):
-    '''Сериализатор для чтения фильмов.'''
-    genres = GenreSerializer(many=True)
-    directors = DirectorSerializer(many=True)
-
-
 class CommentSerializer(serializers.ModelSerializer):
     '''Сериализатор для создания и чтения комментариев.'''
     author = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
@@ -61,6 +55,9 @@ class MovieReadSerializer(serializers.ModelSerializer):
     '''Сериализатор для чтения фильмов.'''
     genres = serializers.PrimaryKeyRelatedField(
         queryset=Genre.objects.all(), many=True
+    )
+    tags = serializers.PrimaryKeyRelatedField(
+        queryset=Tag.objects.all(), many=True
     )
     directors = serializers.PrimaryKeyRelatedField(
         queryset=Director.objects.all(), many=True
@@ -107,6 +104,11 @@ class MovieWriteSerializer(serializers.ModelSerializer):
             'directors': {'write_only': True}
         }
 
+    def _set_tags(self, movie, tag_ids):
+        '''Создаёт в базе данных информацию о связи между фильмом и тегами.'''
+        tags = Tag.objects.filter(id__in=tag_ids)
+        movie.tags.set(tags)
+
     def _set_genres(self, movie, genre_ids):
         '''Создаёт в базе данных информацию о связи между фильмом и жанрами.'''
         genres = Genre.objects.filter(id__in=genre_ids)
@@ -122,7 +124,9 @@ class MovieWriteSerializer(serializers.ModelSerializer):
     def create(self, validated_data):
         genre_ids = validated_data.pop('genres',[])
         director_ids = validated_data.pop('directors',[])
+        tag_ids = validated_data.pop('tags', [])
         movie = Movie.objects.create(**validated_data)
+        self._set_tags(movie, tag_ids)
         self._set_genres(movie, genre_ids)
         self._set_directors(movie, director_ids)
         return movie
@@ -130,12 +134,16 @@ class MovieWriteSerializer(serializers.ModelSerializer):
     def update(self, instance, validated_data):
         genre_ids = validated_data.pop('genres', None)
         director_ids = validated_data.pop('directors', None)
+        tag_ids = validated_data.pop('tags', None)
 
         if genre_ids is not None:
             self._set_genres(instance, genre_ids)
 
         if director_ids is not None:
             self._set_directors(instance, director_ids)
+
+        if tag_ids is not None:
+            self._set_tags(instance, tag_ids)
 
         return instance
 

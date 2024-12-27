@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 
 USERNAME_MAX_LEN = 64
-PASSWORD_MAX_LEN = 64
+PASSWORD_MAX_LEN = 256
 
 
 class User(AbstractUser):

@@ -1,5 +1,8 @@
 from django.shortcuts import get_list_or_404
 
+from django_filters.rest_framework import DjangoFilterBackend
+
+from rest_framework.filters import SearchFilter
 from rest_framework import viewsets, exceptions, status
 from rest_framework.response import Response
 from rest_framework.decorators import action
@@ -48,6 +51,8 @@ class DirectorViewSet(viewsets.ModelViewSet):
 class MovieViewSet(viewsets.ModelViewSet):
     '''Вьюсет для создания, чтения, изменения и удаления фильмов.'''
     queryset = Movie.objects.all()
+    filter_backends = [DjangoFilterBackend, SearchFilter]
+    search_fields = ['title']
 
     def get_serializer_class(self):
         if self.action in ('retrieve', 'list'):

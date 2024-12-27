@@ -90,40 +90,6 @@ class MovieDirector(models.Model):
     )
 
 
-class Movie(models.Model):
-    '''Модель фильма.'''
-    title = models.CharField(
-        verbose_name='Название',
-        max_length=MOVIE_TITLE_MAX_LEN
-    )
-    description = models.TextField(
-        verbose_name='Описание',
-        blank=True,
-        null=True
-    )
-    genres = models.ManyToManyField(
-        verbose_name='Жанры',
-        to='Genre',
-        through=MovieGenre,
-        related_name='genres'
-    )
-    directors = models.ManyToManyField(
-        verbose_name='Режиссёры',
-        to='Director',
-        through=MovieDirector,
-        related_name='directors',
-        blank=True
-    )
-
-    class Meta:
-        verbose_name = 'Фильм'
-        verbose_name_plural = 'Фильмы'
-        ordering = ('id',)
-
-    def __str__(self):
-        return self.title
-
-
 class MovieTags(models.Model):
     '''Модель связи фильмов и тегов.'''
     user = models.ForeignKey(
@@ -146,6 +112,46 @@ class MovieTags(models.Model):
         verbose_name='Время добавления',
         auto_now_add=True
     )
+
+
+class Movie(models.Model):
+    '''Модель фильма.'''
+    title = models.CharField(
+        verbose_name='Название',
+        max_length=MOVIE_TITLE_MAX_LEN
+    )
+    description = models.TextField(
+        verbose_name='Описание',
+        blank=True,
+        null=True
+    )
+    tags = models.ManyToManyField(
+        verbose_name='Теги',
+        to='Tag',
+        through=MovieTags,
+        related_name='tags'
+    )
+    genres = models.ManyToManyField(
+        verbose_name='Жанры',
+        to='Genre',
+        through=MovieGenre,
+        related_name='genres'
+    )
+    directors = models.ManyToManyField(
+        verbose_name='Режиссёры',
+        to='Director',
+        through=MovieDirector,
+        related_name='directors',
+        blank=True
+    )
+
+    class Meta:
+        verbose_name = 'Фильм'
+        verbose_name_plural = 'Фильмы'
+        ordering = ('id',)
+
+    def __str__(self):
+        return self.title
 
 
 class Comment(models.Model):
