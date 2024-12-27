@@ -141,18 +141,21 @@ class MovieWriteSerializer(serializers.ModelSerializer):
 
 
 class MovieRecommendationsReadSerializer(serializers.ModelSerializer):
+    '''Сериализатор для чтения рекомендаций для фильмов.'''
     class Meta:
         model = MovieRecommendations
         fields = ('movie', 'recommendations')
 
 
 class UserRecommendationsReadSerializer(serializers.ModelSerializer):
+    '''Сериализатор для чтения рекомендаций для пользователей.'''
     class Meta:
         model = UserRecommendations
         fields = ('user', 'recommendations')
 
 
 class RatingSerializer(serializers.ModelSerializer):
+    '''Сериализатор для создания и чтения рейтингов.'''
     class Meta:
         model = Rating
         fields = ('id', 'rating', 'movie', 'author')
