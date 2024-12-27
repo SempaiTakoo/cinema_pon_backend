@@ -67,10 +67,10 @@ class MovieReadSerializer(serializers.ModelSerializer):
     class Meta:
         model = Movie
         fields = (
-            'id', 'title', 'description', 'genres', 'directors', 'comments'
+            'id', 'title', 'description', 'tags', 'genres', 'directors', 'comments'
         )
         read_only_fields = (
-            'id', 'title', 'description', 'genres', 'directors', 'comments'
+            'id', 'title', 'description', 'tags', 'genres', 'directors', 'comments'
         )
 
     def get_comments(self, obj):
