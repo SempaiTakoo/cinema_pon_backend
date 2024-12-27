@@ -158,4 +158,4 @@ class RatingSerializer(serializers.ModelSerializer):
     '''Сериализатор для создания и чтения рейтингов.'''
     class Meta:
         model = Rating
-        fields = ('id', 'rating', 'movie', 'author')
+        fields = ('id', 'rating', 'movie', 'author', 'created_at')
