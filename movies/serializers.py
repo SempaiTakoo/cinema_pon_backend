@@ -3,7 +3,8 @@ from rest_framework import serializers
 from users.models import User
 
 from .models import (
-    Comment, MovieGenre, Tag, Genre, Movie, Director
+    Comment, Tag, Genre, Director,
+    Movie, MovieRecommendations, UserRecommendations
 )
 
 
@@ -75,9 +76,6 @@ class MovieReadSerializer(serializers.ModelSerializer):
             'id', 'title', 'description', 'genres', 'directors', 'comments'
         )
 
-    # def get_comments(self, obj):
-    #     return Comment.objects.filter(movie=obj)
-
     def get_comments(self, obj):
         comments = Comment.objects.filter(movie=obj)
         serializer = CommentSerializer(comments, many=True)
@@ -140,3 +138,15 @@ class MovieWriteSerializer(serializers.ModelSerializer):
             self._set_directors(instance, director_ids)
 
         return instance
+
+
+class MovieRecommendationsReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = MovieRecommendations
+        fields = ['movie', 'recommendations']
+
+
+class UserRecommendationsReadSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserRecommendations
+        fields = ['user', 'recommendations']

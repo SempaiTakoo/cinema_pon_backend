@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
+from django.core.validators import MinValueValidator, MaxValueValidator
 
 from users.models import User
 
@@ -123,6 +125,12 @@ class Movie(models.Model):
 
 class MovieTags(models.Model):
     '''Модель связи фильмов и тегов.'''
+    user = models.ForeignKey(
+        verbose_name='Пользователь',
+        to=User,
+        null=True,
+        on_delete=models.CASCADE
+    )
     movie = models.ForeignKey(
         verbose_name='Фильм',
         to='Movie',
@@ -132,6 +140,10 @@ class MovieTags(models.Model):
         verbose_name='Тег',
         to='Tag',
         on_delete=models.CASCADE
+    )
+    created_at = models.DateTimeField(
+        verbose_name='Время добавления',
+        auto_now_add=True
     )
 
 
@@ -160,3 +172,59 @@ class Comment(models.Model):
         verbose_name = 'Комментарий'
         verbose_name_plural = 'Комментарии'
         ordering = ('-created_at',)
+
+
+class Rating(models.Model):
+    '''Модель рейтинга фильма.'''
+    user = models.ForeignKey(
+        verbose_name='Пользователь',
+        to=User,
+        on_delete=models.CASCADE
+    )
+    movie = models.ForeignKey(
+        verbose_name='Фильм',
+        to=Movie,
+        on_delete=models.CASCADE
+    )
+    rating = models.FloatField(
+        verbose_name='Рейтинг',
+        default=0,
+        validators=[
+            MinValueValidator(0.0),
+            MaxValueValidator(10.0)
+        ]
+    )
+    created_at = models.DateTimeField(
+        verbose_name='Время добавления',
+        auto_now_add=True
+    )
+
+
+class UserRecommendations(models.Model):
+    '''Модель рекомендаций для пользователя.'''
+    user = models.ForeignKey(
+        verbose_name='Пользователь',
+        to=User,
+        on_delete=models.CASCADE
+    )
+    recommendations = ArrayField(
+        verbose_name='Рекомендации',
+        base_field=models.IntegerField(),
+        blank=True,
+        default=list
+    )
+
+
+class MovieRecommendations(models.Model):
+    '''Модель рекомендаций для фильма.'''
+    movie = models.ForeignKey(
+        verbose_name='Фильм',
+        to=Movie,
+        on_delete=models.CASCADE
+    )
+    recommendations = ArrayField(
+        verbose_name='Рекомендации',
+        base_field=models.IntegerField(),
+        blank=True,
+        default=list
+    )
