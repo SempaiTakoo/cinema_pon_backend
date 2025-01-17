@@ -1,0 +1,370 @@
+\chapter{Документация}
+\label{ch:docs}
+
+\hypertarget{ux432ux432ux435ux434ux435ux43dux438ux435}{%
+\section{Введение}\label{ux432ux432ux435ux434ux435ux43dux438ux435}}
+
+\hypertarget{ux43eux43fux438ux441ux430ux43dux438ux435-ux43fux440ux43eux435ux43aux442ux430}{%
+\subsection*{Описание
+проекта}\label{ux43eux43fux438ux441ux430ux43dux438ux435-ux43fux440ux43eux435ux43aux442ux430}}
+
+Проект \textbf{CinemaPon} представляет собой бэкенд-систему,
+предназначенную для управления данными о фильмах и связанными с ними
+сущностями, такими как жанры, режиссеры, теги, рейтинги и комментарии.
+Основная цель системы --- предоставить удобный инструмент для хранения,
+обработки и анализа информации о фильмах, а также для генерации
+персонализированных рекомендаций для пользователей.
+
+Система поддерживает стандартные CRUD-операции (Create, Read, Update,
+Delete), что позволяет администраторам легко управлять данными. Кроме
+того, в проект интегрирован модуль машинного обучения (ML), который
+ежедневно обновляет рекомендации для пользователей и фильмов на основе
+их предпочтений и поведения.
+
+\hypertarget{ux446ux435ux43bux435ux432ux430ux44f-ux430ux443ux434ux438ux442ux43eux440ux438ux44f}{%
+\subsection*{Целевая
+аудитория}\label{ux446ux435ux43bux435ux432ux430ux44f-ux430ux443ux434ux438ux442ux43eux440ux438ux44f}}
+
+Целевая аудитория проекта делится на две основные группы: 1.
+\textbf{Администраторы системы} --- лица, ответственные за управление
+данными о фильмах, жанрах, режиссерах, тегах и других сущностях. Они
+имеют полный доступ ко всем функциям системы, включая добавление,
+редактирование и удаление данных. 2. \textbf{Пользователи} --- конечные
+потребители, которые взаимодействуют с системой через API для получения
+информации о фильмах, рекомендаций, а также для оставления комментариев
+и оценок.
+
+\hypertarget{ux43eux441ux43dux43eux432ux43dux44bux435-ux444ux443ux43dux43aux446ux438ux438}{%
+\subsection*{Основные
+функции}\label{ux43eux441ux43dux43eux432ux43dux44bux435-ux444ux443ux43dux43aux446ux438ux438}}
+
+Система предоставляет следующие ключевые функции: - \textbf{Управление
+данными о фильмах}: Добавление, редактирование, удаление и просмотр
+информации о фильмах. - \textbf{Управление связанными сущностями}:
+Работа с жанрами, режиссерами, тегами, рейтингами и комментариями. -
+\textbf{Генерация рекомендаций}: Ежедневное обновление рекомендаций для
+пользователей и фильмов с использованием машинного обучения. -
+\textbf{Аутентификация и авторизация}: Поддержка регистрации, входа в
+систему и управления правами доступа.
+
+\hypertarget{ux430ux440ux445ux438ux442ux435ux43aux442ux443ux440ux430-ux441ux438ux441ux442ux435ux43cux44b}{%
+\section{Архитектура
+системы}\label{ux430ux440ux445ux438ux442ux435ux43aux442ux443ux440ux430-ux441ux438ux441ux442ux435ux43cux44b}}
+
+\hypertarget{ux43eux431ux449ux430ux44f-ux430ux440ux445ux438ux442ux435ux43aux442ux443ux440ux430}{%
+\subsection*{Общая
+архитектура}\label{ux43eux431ux449ux430ux44f-ux430ux440ux445ux438ux442ux435ux43aux442ux443ux440ux430}}
+
+Система построена на основе микросервисной архитектуры, где бэкенд
+реализован с использованием \textbf{Django} и \textbf{Django REST
+Framework (DRF)}. Это позволяет системе быть масштабируемой и легко
+расширяемой. Модуль машинного обучения интегрирован в систему и работает
+в фоновом режиме, обновляя рекомендации ежедневно.
+
+\hypertarget{ux442ux435ux445ux43dux43eux43bux43eux433ux438ux447ux435ux441ux43aux438ux439-ux441ux442ux435ux43a}{%
+\subsection*{Технологический
+стек}\label{ux442ux435ux445ux43dux43eux43bux43eux433ux438ux447ux435ux441ux43aux438ux439-ux441ux442ux435ux43a}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Бэкенд}: Django, Django REST Framework (DRF) для создания API.
+\item
+  \textbf{База данных}: PostgreSQL для хранения структурированных
+  данных.
+\item
+  \textbf{ML-модуль}: (укажите используемые библиотеки или фреймворки,
+  например, TensorFlow, Scikit-learn).
+\item
+  \textbf{Дополнительные инструменты}: Docker для контейнеризации, Git
+  для контроля версий, CI/CD-инструменты для автоматизации
+  развертывания.
+\end{itemize}
+
+\hypertarget{ux441ux445ux435ux43cux430-ux431ux430ux437ux44b-ux434ux430ux43dux43dux44bux445}{%
+\subsection*{Схема базы
+данных}\label{ux441ux445ux435ux43cux430-ux431ux430ux437ux44b-ux434ux430ux43dux43dux44bux445}}
+
+База данных системы включает следующие основные таблицы: -
+\textbf{Movies}: Содержит информацию о фильмах (название, описание, год
+выпуска и т.д.). - \textbf{Genres}: Список жанров, к которым могут
+относиться фильмы. - \textbf{Directors}: Информация о режиссерах. -
+\textbf{Tags}: Теги для фильмов, которые помогают в классификации и
+поиске. - \textbf{Ratings}: Рейтинги, оставленные пользователями. -
+\textbf{Comments}: Комментарии пользователей к фильмам. -
+\textbf{Recommendations}: Таблица для хранения рекомендаций, как для
+пользователей, так и для фильмов.
+
+\hypertarget{uml-ux434ux438ux430ux433ux440ux430ux43cux43cux44b}{%
+\subsection*{UML-диаграммы}\label{uml-ux434ux438ux430ux433ux440ux430ux43cux43cux44b}}
+
+Для наглядности архитектуры системы можно использовать UML-диаграммы: -
+\textbf{Диаграмма классов}: Отображает основные классы системы и их
+взаимосвязи. - \textbf{Диаграмма последовательностей}: Показывает, как
+взаимодействуют компоненты системы при выполнении типичных операций,
+таких как добавление фильма или получение рекомендаций.
+
+\hypertarget{ux443ux441ux442ux430ux43dux43eux432ux43aux430-ux438-ux43dux430ux441ux442ux440ux43eux439ux43aux430}{%
+\section{Установка и
+настройка}\label{ux443ux441ux442ux430ux43dux43eux432ux43aux430-ux438-ux43dux430ux441ux442ux440ux43eux439ux43aux430}}
+
+\hypertarget{ux442ux440ux435ux431ux43eux432ux430ux43dux438ux44f-ux43a-ux43eux43aux440ux443ux436ux435ux43dux438ux44e}{%
+\subsection*{Требования к
+окружению}\label{ux442ux440ux435ux431ux43eux432ux430ux43dux438ux44f-ux43a-ux43eux43aux440ux443ux436ux435ux43dux438ux44e}}
+
+Для запуска проекта необходимо следующее: - \textbf{Docker} и
+\textbf{Docker Compose} для контейнеризации и управления зависимостями.
+- \textbf{Python 3.x} для работы с бэкендом. - \textbf{PostgreSQL} в
+качестве базы данных.
+
+\hypertarget{ux443ux441ux442ux430ux43dux43eux432ux43aux430-ux43fux440ux43eux435ux43aux442ux430}{%
+\subsection*{Установка
+проекта}\label{ux443ux441ux442ux430ux43dux43eux432ux43aux430-ux43fux440ux43eux435ux43aux442ux430}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Клонируйте репозиторий проекта:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{git}\NormalTok{ clone https://github.com/SempaiTakoo/cinema\_pon\_backend.git}
+\BuiltInTok{cd}\NormalTok{ cinema\_pon\_backend}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Создайте и активируйте виртуальное окружение:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python} \AttributeTok{{-}m}\NormalTok{ venv venv}
+\BuiltInTok{source}\NormalTok{ venv/bin/activate  }\CommentTok{\# Для Linux/MacOS}
+\ExtensionTok{venv\textbackslash{}Scripts\textbackslash{}activate}  \CommentTok{\# Для Windows}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Установите зависимости:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{pip}\NormalTok{ install }\AttributeTok{{-}r}\NormalTok{ requirements.txt}
+\end{Highlighting}
+\end{Shaded}
+\item
+  Запустите проект с помощью Docker:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{docker{-}compose}\NormalTok{ up }\AttributeTok{{-}{-}build}
+\end{Highlighting}
+\end{Shaded}
+\end{enumerate}
+
+\hypertarget{ux43dux430ux441ux442ux440ux43eux439ux43aux430-ux43eux43aux440ux443ux436ux435ux43dux438ux44f}{%
+\subsection*{Настройка
+окружения}\label{ux43dux430ux441ux442ux440ux43eux439ux43aux430-ux43eux43aux440ux443ux436ux435ux43dux438ux44f}}
+
+Для корректной работы системы необходимо настроить переменные окружения,
+такие как: - \textbf{DATABASE\_URL}: URL для подключения к базе данных.
+- \textbf{SECRET\_KEY}: Секретный ключ для Django. -
+\textbf{ML\_MODEL\_PATH}: Путь к модели машинного обучения.
+
+\hypertarget{api-ux434ux43eux43aux443ux43cux435ux43dux442ux430ux446ux438ux44f}{%
+\section{API
+документация}\label{api-ux434ux43eux43aux443ux43cux435ux43dux442ux430ux446ux438ux44f}}
+
+\hypertarget{ux43eux441ux43dux43eux432ux43dux44bux435-endpoints}{%
+\subsection*{Основные
+endpoints}\label{ux43eux441ux43dux43eux432ux43dux44bux435-endpoints}}
+
+Система предоставляет следующие основные API endpoints: -
+\textbf{Фильмы}: - \texttt{GET\ /api/v1/movies/} --- получение списка
+фильмов. - \texttt{POST\ /api/v1/movies/} --- создание нового фильма. -
+\texttt{GET\ /api/v1/movies/\{id\}/} --- получение информации о
+конкретном фильме. - \texttt{PUT\ /api/v1/movies/\{id\}/} --- обновление
+информации о фильме. - \texttt{DELETE\ /api/v1/movies/\{id\}/} ---
+удаление фильма.
+
+Аналогичные endpoints доступны для управления: - \textbf{Пользователями}
+(\texttt{/api/v1/users/}). - \textbf{Комментариями}
+(\texttt{/api/v1/comments/}). - \textbf{Жанрами}
+(\texttt{/api/v1/genres/}). - \textbf{Тегами} (\texttt{/api/v1/tags/}).
+- \textbf{Рейтингами} (\texttt{/api/v1/ratings/}). -
+\textbf{Режиссерами} (\texttt{/api/v1/directors/}). -
+\textbf{Рекомендациями} (\texttt{/api/v1/movie\_recommendations/},
+\texttt{/api/v1/user\_recommendations/}).
+
+\hypertarget{ux43fux440ux438ux43cux435ux440ux44b-ux437ux430ux43fux440ux43eux441ux43eux432}{%
+\subsection*{Примеры
+запросов}\label{ux43fux440ux438ux43cux435ux440ux44b-ux437ux430ux43fux440ux43eux441ux43eux432}}
+
+Пример запроса для получения списка фильмов:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl} \AttributeTok{{-}X}\NormalTok{ GET http://localhost:8000/api/v1/movies/}
+\end{Highlighting}
+\end{Shaded}
+
+Пример запроса для создания нового фильма:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{curl} \AttributeTok{{-}X}\NormalTok{ POST http://localhost:8000/api/v1/movies/ }\AttributeTok{{-}H} \StringTok{"Content{-}Type: application/json"} \AttributeTok{{-}d} \StringTok{\textquotesingle{}\{"title": "New Movie", "genre": "Action", "director": "John Doe"\}\textquotesingle{}}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux43eux440ux433ux430ux43dux438ux437ux430ux446ux438ux44f-ux43fux43eux434ux434ux435ux440ux436ux43aux438-ux438-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux44f-ux440ux430ux437ux440ux430ux431ux43eux442ux43aux438}{%
+\section{Организация поддержки и сопровождения
+разработки}\label{ux43eux440ux433ux430ux43dux438ux437ux430ux446ux438ux44f-ux43fux43eux434ux434ux435ux440ux436ux43aux438-ux438-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux44f-ux440ux430ux437ux440ux430ux431ux43eux442ux43aux438}}
+
+\hypertarget{ux43fux440ux43eux446ux435ux441ux441-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux44f}{%
+\subsection*{Процесс
+сопровождения}\label{ux43fux440ux43eux446ux435ux441ux441-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux44f}}
+
+Сопровождение системы включает следующие этапы: 1. \textbf{Мониторинг}:
+Использование инструментов, таких как Prometheus и Grafana, для
+отслеживания состояния системы. 2. \textbf{Обновления}: Регулярное
+обновление зависимостей и миграции базы данных. 3. \textbf{Обратная
+связь}: Сбор и анализ отзывов от пользователей для улучшения системы.
+
+\hypertarget{ux447ux430ux441ux442ux43e-ux437ux430ux434ux430ux432ux430ux435ux43cux44bux435-ux432ux43eux43fux440ux43eux441ux44b-faq}{%
+\subsection*{Часто задаваемые вопросы
+(FAQ)}\label{ux447ux430ux441ux442ux43e-ux437ux430ux434ux430ux432ux430ux435ux43cux44bux435-ux432ux43eux43fux440ux43eux441ux44b-faq}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Вопрос}: Как добавить новый фильм? \textbf{Ответ}: Используйте
+  endpoint \texttt{POST\ /api/v1/movies/} с необходимыми данными.
+\item
+  \textbf{Вопрос}: Как получить рекомендации для пользователя?
+  \textbf{Ответ}: Используйте endpoint
+  \texttt{GET\ /api/v1/user\_recommendations/\{user\_id\}/}.
+\end{itemize}
+
+\hypertarget{ux440ux443ux43aux43eux432ux43eux434ux441ux442ux432ux43e-ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux435ux439-ux440ux430ux437ux440ux430ux431ux43eux442ux430ux43dux43dux43eux433ux43e-ux43fux440ux43eux434ux443ux43aux442ux430}{%
+\section{Руководство пользователей разработанного
+продукта}\label{ux440ux443ux43aux43eux432ux43eux434ux441ux442ux432ux43e-ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux435ux439-ux440ux430ux437ux440ux430ux431ux43eux442ux430ux43dux43dux43eux433ux43e-ux43fux440ux43eux434ux443ux43aux442ux430}}
+
+\hypertarget{ux442ux438ux43fux44b-ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux435ux439-ux438-ux438ux445-ux43fux43eux43bux43dux43eux43cux43eux447ux438ux44f}{%
+\subsection*{Типы пользователей и их
+полномочия}\label{ux442ux438ux43fux44b-ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux435ux439-ux438-ux438ux445-ux43fux43eux43bux43dux43eux43cux43eux447ux438ux44f}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Администраторы}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Полный доступ ко всем данным.
+  \item
+    Возможность добавлять, редактировать и удалять данные.
+  \end{itemize}
+\item
+  \textbf{Пользователи}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Доступ к просмотру информации о фильмах и рекомендаций.
+  \item
+    Возможность оставлять комментарии и оценки.
+  \end{itemize}
+\end{itemize}
+
+\hypertarget{customer-journey-map-cjm}{%
+\subsection*{Customer Journey Map
+(CJM)}\label{customer-journey-map-cjm}}
+
+\hypertarget{ux430ux434ux43cux438ux43dux438ux441ux442ux440ux430ux442ux43eux440ux44b}{%
+\paragraph{Администраторы}\label{ux430ux434ux43cux438ux43dux438ux441ux442ux440ux430ux442ux43eux440ux44b}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Вход в систему}: Аутентификация через API.
+\item
+  \textbf{Управление данными}: Добавление, редактирование и удаление
+  данных.
+\item
+  \textbf{Мониторинг}: Просмотр логов и мониторинг состояния системы.
+\end{enumerate}
+
+\hypertarget{ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux438}{%
+\paragraph{Пользователи}\label{ux43fux43eux43bux44cux437ux43eux432ux430ux442ux435ux43bux438}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Регистрация/авторизация}: Регистрация нового пользователя или
+  вход в систему.
+\item
+  \textbf{Просмотр фильмов}: Поиск и просмотр информации о фильмах.
+\item
+  \textbf{Получение рекомендаций}: Просмотр персональных рекомендаций.
+\item
+  \textbf{Взаимодействие}: Оставление комментариев и оценок.
+\end{enumerate}
+
+\hypertarget{ux442ux435ux441ux442ux438ux440ux43eux432ux430ux43dux438ux435}{%
+\section{Тестирование}\label{ux442ux435ux441ux442ux438ux440ux43eux432ux430ux43dux438ux435}}
+
+\hypertarget{ux44eux43dux438ux442-ux442ux435ux441ux442ux44b}{%
+\subsection*{Юнит-тесты}\label{ux44eux43dux438ux442-ux442ux435ux441ux442ux44b}}
+
+Юнит-тесты покрывают основные функции системы, такие как добавление
+фильмов, управление пользователями и генерация рекомендаций. Для запуска
+тестов используйте команду:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ExtensionTok{python}\NormalTok{ manage.py test}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux438ux43dux442ux435ux433ux440ux430ux446ux438ux43eux43dux43dux44bux435-ux442ux435ux441ux442ux44b}{%
+\subsection*{Интеграционные
+тесты}\label{ux438ux43dux442ux435ux433ux440ux430ux446ux438ux43eux43dux43dux44bux435-ux442ux435ux441ux442ux44b}}
+
+Интеграционные тесты проверяют взаимодействие между различными
+компонентами системы, такими как API и база данных.
+
+\hypertarget{ux440ux430ux437ux432ux435ux440ux442ux44bux432ux430ux43dux438ux435}{%
+\section{Развертывание}\label{ux440ux430ux437ux432ux435ux440ux442ux44bux432ux430ux43dux438ux435}}
+
+\hypertarget{ux440ux430ux437ux432ux435ux440ux442ux44bux432ux430ux43dux438ux435-ux43dux430-ux441ux435ux440ux432ux435ux440ux435}{%
+\subsection*{Развертывание на
+сервере}\label{ux440ux430ux437ux432ux435ux440ux442ux44bux432ux430ux43dux438ux435-ux43dux430-ux441ux435ux440ux432ux435ux440ux435}}
+
+Для развертывания системы на production-сервере используйте Docker и
+CI/CD-инструменты, такие как GitHub Actions или GitLab CI.
+
+\hypertarget{cicd}{%
+\subsection*{CI/CD}\label{cicd}}
+
+Процесс Continuous Integration/Continuous Deployment включает
+автоматическое тестирование и развертывание при каждом изменении кода.
+
+\hypertarget{ux43fux43eux434ux434ux435ux440ux436ux43aux430-ux438-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux435}{%
+\section{Поддержка и
+сопровождение}\label{ux43fux43eux434ux434ux435ux440ux436ux43aux430-ux438-ux441ux43eux43fux440ux43eux432ux43eux436ux434ux435ux43dux438ux435}}
+
+\hypertarget{ux43bux43eux433ux438ux440ux43eux432ux430ux43dux438ux435}{%
+\subsection*{Логирование}\label{ux43bux43eux433ux438ux440ux43eux432ux430ux43dux438ux435}}
+
+Система использует централизованное логирование для отслеживания ошибок
+и анализа производительности.
+
+\hypertarget{ux43eux431ux440ux430ux431ux43eux442ux43aux430-ux43eux448ux438ux431ux43eux43a}{%
+\subsection*{Обработка
+ошибок}\label{ux43eux431ux440ux430ux431ux43eux442ux43aux430-ux43eux448ux438ux431ux43eux43a}}
+
+Ошибки обрабатываются с использованием механизмов Django и DRF, с
+возвращением соответствующих HTTP-статусов и сообщений об ошибках.
+
+\endinput
