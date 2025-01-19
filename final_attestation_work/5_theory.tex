@@ -289,7 +289,8 @@ class Movie(models.Model):
     title = models.CharField(max_length=255)
     description = models.TextField()
     release_date = models.DateField()
-    director = models.ForeignKey('Director', on_delete=models.CASCADE)
+    director = models.ForeignKey('Director', 
+    on_delete=models.CASCADE)
 \end{verbatim}
 
 \section{Создание миграций и управление схемой базы данных}
@@ -542,8 +543,10 @@ axios.get('https://example.com/api/movies/1/')
     fetch('https://example.com/api/movies/1/')
       .then(response => response.json())
       .then(data => {
-        document.getElementById('movie-title').innerText = data.title;
-        document.getElementById('movie-description').innerText = data.description;
+        document.getElementById('movie-title')
+        .innerText = data.title;
+        document.getElementById('movie-description')
+        .innerText = data.description;
       });
     \end{verbatim}
     \item Бэкенд, реализованный на Django REST Framework, отвечает данными:
@@ -551,7 +554,8 @@ axios.get('https://example.com/api/movies/1/')
     {
       "id": 1,
       "title": "Inception",
-      "description": "A skilled thief is given a chance at redemption...",
+      "description": "A skilled thief is given a chance 
+      at redemption...",
       "director": "Christopher Nolan",
       "tags": ["thriller", "sci-fi"]
     }
@@ -976,9 +980,9 @@ a(x) = w_0 + \sum_{j=1}^{d} w_j x_j,
 \subsubsection*{1. Среднеквадратичная ошибка
 (MSE):}\label{ux441ux440ux435ux434ux43dux435ux43aux432ux430ux434ux440ux430ux442ux438ux447ux43dux430ux44f-ux43eux448ux438ux431ux43aux430-mse}}
 
-\[
+\begin{equation}
 MSE = \frac{1}{\ell} \sum_{i=1}^{\ell} (a(x_i) - y_i)^2.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -994,9 +998,9 @@ MSE = \frac{1}{\ell} \sum_{i=1}^{\ell} (a(x_i) - y_i)^2.
 \subsubsection*{2. Средняя абсолютная ошибка
 (MAE):}\label{ux441ux440ux435ux434ux43dux44fux44f-ux430ux431ux441ux43eux43bux44eux442ux43dux430ux44f-ux43eux448ux438ux431ux43aux430-mae}}
 
-\[
+\begin{equation}
 MAE = \frac{1}{\ell} \sum_{i=1}^{\ell} |a(x_i) - y_i|.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1010,9 +1014,9 @@ MAE = \frac{1}{\ell} \sum_{i=1}^{\ell} |a(x_i) - y_i|.
 \subsubsection*{\texorpdfstring{3. Коэффициент детерминации
 (\(R^2\)):}{3. Коэффициент детерминации (R\^{}2):}}\label{ux43aux43eux44dux444ux444ux438ux446ux438ux435ux43dux442-ux434ux435ux442ux435ux440ux43cux438ux43dux430ux446ux438ux438-r2}}
 
-\[
+\begin{equation}
 R^2 = 1 - \frac{\sum_{i=1}^{\ell} (a(x_i) - y_i)^2}{\sum_{i=1}^{\ell} (y_i - \bar{y})^2}.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1031,13 +1035,13 @@ R^2 = 1 - \frac{\sum_{i=1}^{\ell} (a(x_i) - y_i)^2}{\sum_{i=1}^{\ell} (y_i - \ba
   \textbf{Huber Loss} --- комбинирует свойства MSE и MAE:
 \end{itemize}
 
-\[
+\begin{equation}
 L_\delta(y, a) = 
 \begin{cases} 
 \frac{1}{2}(y - a)^2, & \text{если } |y - a| < \delta, \\
 \delta (|y - a| - \frac{1}{2}\delta), & \text{иначе}.
 \end{cases}
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1045,17 +1049,17 @@ L_\delta(y, a) =
   \textbf{Log-Cosh Loss} --- мягче штрафует большие ошибки:
 \end{itemize}
 
-\[
+\begin{equation}
 L(y, a) = \log(\cosh(y - a)).
-\]
+\end{equation}
 
 \hypertarget{ux441ux440ux435ux434ux43dux435ux43aux432ux430ux434ux440ux430ux442ux438ux447ux43dux430ux44f-ux43bux43eux433ux430ux440ux438ux444ux43cux438ux447ux435ux441ux43aux430ux44f-ux43eux448ux438ux431ux43aux430-msle}{%
 \subsubsection*{5. Среднеквадратичная логарифмическая ошибка
 (MSLE):}\label{ux441ux440ux435ux434ux43dux435ux43aux432ux430ux434ux440ux430ux442ux438ux447ux43dux430ux44f-ux43bux43eux433ux430ux440ux438ux444ux43cux438ux447ux435ux441ux43aux430ux44f-ux43eux448ux438ux431ux43aux430-msle}}
 
-\[
+\begin{equation}
 MSLE = \frac{1}{\ell} \sum_{i=1}^{\ell} (\log(a(x_i) + 1) - \log(y_i + 1))^2.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1073,9 +1077,9 @@ SMAPE):}\label{ux43fux440ux43eux446ux435ux43dux442ux43dux44bux435-ux43eux448ux43
   \textbf{MAPE} измеряет среднюю абсолютную процентную ошибку:
 \end{itemize}
 
-\[
+\begin{equation}
 MAPE = \frac{1}{\ell} \sum_{i=1}^{\ell} \left|\frac{y_i - a(x_i)}{y_i}\right|.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1084,9 +1088,9 @@ MAPE = \frac{1}{\ell} \sum_{i=1}^{\ell} \left|\frac{y_i - a(x_i)}{y_i}\right|.
   ответов:
 \end{itemize}
 
-\[
+\begin{equation}
 SMAPE = \frac{|y - a|}{(|y| + |a|)/2}.
-\]
+\end{equation}
 
 \hypertarget{ux43aux432ux430ux43dux442ux438ux43bux44cux43dux430ux44f-ux444ux443ux43dux43aux446ux438ux44f-ux43fux43eux442ux435ux440ux44c}{%
 \subsubsection*{7. Квантильная функция
@@ -1098,9 +1102,9 @@ SMAPE = \frac{|y - a|}{(|y| + |a|)/2}.
   Используется для задач с разной ценностью ошибок:
 \end{itemize}
 
-\[
+\begin{equation}
 Q(a, X) = \sum_{i=1}^{\ell} \rho_\tau(y_i - a(x_i)),
-\]
+\end{equation}
 
 где \(\rho_\tau(z)\) акцентирует внимание на занижениях или завышениях.
 
@@ -1191,9 +1195,9 @@ Q(a, X) = \sum_{i=1}^{\ell} \rho_\tau(y_i - a(x_i)),
 Линейная регрессия обучается путём минимизации среднеквадратичной ошибки
 (MSE):
 
-\[
+\begin{equation}
 \frac{1}{\ell} \sum_{i=1}^\ell (\langle w, x_i \rangle - y_i)^2 \to \min_w,
-\]
+\end{equation}
 
 где \(X\) --- матрица признаков, \(y\) --- вектор целевых переменных,
 \(w\) --- вектор параметров модели.
@@ -1204,9 +1208,9 @@ Q(a, X) = \sum_{i=1}^{\ell} \rho_\tau(y_i - a(x_i)),
 
 Представлено в матричном виде:
 
-\[
+\begin{equation}
 w = (X^TX)^{-1}X^Ty.
-\]
+\end{equation}
 
 \hypertarget{ux43fux440ux43eux431ux43bux435ux43cux44b-ux430ux43dux430ux43bux438ux442ux438ux447ux435ux441ux43aux43eux433ux43e-ux440ux435ux448ux435ux43dux438ux44f}{%
 \subsubsection*{Проблемы аналитического
@@ -1235,9 +1239,9 @@ w = (X^TX)^{-1}X^Ty.
 \subsubsection*{Шаги
 алгоритма:}\label{ux448ux430ux433ux438-ux430ux43bux433ux43eux440ux438ux442ux43cux430}}
 
-\[
+\begin{equation}
 w^{(k)} = w^{(k-1)} - \eta_k \nabla Q(w^{(k-1)}),
-\]
+\end{equation}
 
 где  \(Q(w)\) --- функция ошибки, \(\eta_k\) --- длина шага, 
 \(\nabla Q\) --- градиент функции ошибки.
@@ -1287,9 +1291,9 @@ w^{(k)} = w^{(k-1)} - \eta_k \nabla Q(w^{(k-1)}),
 
 Для ускорения работы вместо полного градиента для всей выборки:
 
-\[
+\begin{equation}
 \nabla Q(w) = \frac{1}{\ell} \sum_{i=1}^\ell \nabla q_i(w),
-\]
+\end{equation}
 
 применяются приближённые методы:
 
@@ -1303,9 +1307,9 @@ w^{(k)} = w^{(k-1)} - \eta_k \nabla Q(w^{(k-1)}),
   Градиент вычисляется на одном случайно выбранном объекте:
 \end{itemize}
 
-\[
+\begin{equation}
 \nabla Q(w) \approx \nabla q_i(w).
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1326,9 +1330,9 @@ w^{(k)} = w^{(k-1)} - \eta_k \nabla Q(w^{(k-1)}),
   Использует подвыборки данных (пакеты) для оценки градиента:
 \end{itemize}
 
-\[
+\begin{equation}
 \nabla Q(w) \approx \frac{1}{n} \sum_{j=1}^n \nabla q_{i_j}(w),
-\]
+\end{equation}
 
 где \(n\) --- размер пакета.
 
@@ -1365,9 +1369,9 @@ w^{(k)} = w^{(k-1)} - \eta_k \nabla Q(w^{(k-1)}),
   \end{itemize}
 
 
-\[
+\begin{equation}
 h_k = \alpha h_{k-1} + \eta_k \nabla Q(w^{(k-1)}),
-\]
+\end{equation}
 
 где \(\alpha\) --- коэффициент инерции. 
 
@@ -1392,9 +1396,9 @@ h_k = \alpha h_{k-1} + \eta_k \nabla Q(w^{(k-1)}),
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 w_j^{(k)} = w_j^{(k-1)} - \frac{\eta}{\sqrt{G_{k,j} + \epsilon}} \nabla_j Q(w^{(k-1)})
-\]
+\end{equation}
 
 где \(G_{k,j}\) --- накопленные квадраты градиентов, а
 \(\epsilon\)предотвращает деление на ноль.
@@ -1414,9 +1418,9 @@ w_j^{(k)} = w_j^{(k-1)} - \frac{\eta}{\sqrt{G_{k,j} + \epsilon}} \nabla_j Q(w^{(
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 G_{k,j} = \alpha G_{k-1,j} + (1 - \alpha)(\nabla_j Q(w^{(k-1)}))^2.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1443,9 +1447,9 @@ G_{k,j} = \alpha G_{k-1,j} + (1 - \alpha)(\nabla_j Q(w^{(k-1)}))^2.
 Линейная модель классификации для задачи бинарной классификации
 определяется следующим образом:
 
-\[
+\begin{equation}
 a(x) = \text{sign} \left( \langle w, x \rangle + w_0 \right) = \text{sign} \left( \sum_{j=1}^d w_j x_j + w_0 \right),
-\]
+\end{equation}
 
 где \(w \) --- вектор весов, \(w_0 \) --- сдвиг (bias). Модель разделяет
 пространство объектов гиперплоскостью, относит полупространства к
@@ -1453,9 +1457,9 @@ a(x) = \text{sign} \left( \langle w, x \rangle + w_0 \right) = \text{sign} \left
 
 Если в признаках добавляется константа \(x_{d+1} = 1 \), сдвиг \(w_0\) становится ненужным, и модель принимает вид:
 
-\[
+\begin{equation}
 a(x) = \text{sign} \langle w, x \rangle.
-\]
+\end{equation}
 
 \hypertarget{ux43eux431ux443ux447ux435ux43dux438ux435-ux43bux438ux43dux435ux439ux43dux44bux445-ux43aux43bux430ux441ux441ux438ux444ux438ux43aux430ux442ux43eux440ux43eux432}{%
 \subsection*{Обучение линейных
@@ -1467,22 +1471,22 @@ a(x) = \text{sign} \langle w, x \rangle.
 
 Для обучения используется доля неправильных ответов:
 
-\[
+\begin{equation}
 Q(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell \left[ \text{sign} \langle w, x_i \rangle \neq y_i \right] \to \min_w.
-\]
+\end{equation}
 
 Этот функционал является дискретным и сложен для минимизации. Для
 решения задачи вводят \textbf{отступы}:
 
-\[
+\begin{equation}
 M_i = y_i \langle w, x_i \rangle.
-\]
+\end{equation}
 
 Функционал можно переписать через отступы:
 
-\[
+\begin{equation}
 Q(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell [M_i < 0].
-\]
+\end{equation}
 
 Для минимизации используют \textbf{гладкие верхние оценки} на функцию
 потерь \(L(M) = {[}M \textless{} 0{]} \), например: 
@@ -1506,9 +1510,9 @@ Q(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell [M_i < 0].
 
 Определяется как:
 
-\[
+\begin{equation}
 \text{accuracy} = \frac{1}{\ell} \sum_{i=1}^\ell [a(x_i) = y_i].
-\]
+\end{equation}
 
 Недостаток: игнорирует несбалансированность классов. Для анализа вводят
 \textbf{относительное уменьшение ошибки}.
@@ -1528,9 +1532,9 @@ Positive), \(\text{FP}\)(False Positive), \(\text{FN}\)(False Negative),
 Точность (precision):
 \end{itemize}
 
-\[
+\begin{equation}
 \text{precision} = \frac{\text{TP}}{\text{TP} + \text{FP}},
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1538,16 +1542,16 @@ Positive), \(\text{FP}\)(False Positive), \(\text{FN}\)(False Negative),
   Полноту (recall):
 \end{itemize}
 
-\[
+\begin{equation}
 \text{recall} = \frac{\text{TP}}{\text{TP} + \text{FN}}.
-\]
+\end{equation}
 
 Также используется \textbf{F-мера} --- гармоническое среднее точности и
 полноты:
 
-\[
+\begin{equation}
 F = \frac{2 \cdot \text{precision} \cdot \text{recall}}{\text{precision} + \text{recall}}.
-\]
+\end{equation}
 
 \hypertarget{roc-ux43aux440ux438ux432ux430ux44f-ux438-auc-roc}{%
 \subsubsection*{3. ROC-кривая и
@@ -1555,9 +1559,9 @@ AUC-ROC}\label{roc-ux43aux440ux438ux432ux430ux44f-ux438-auc-roc}}
 
 ROC-кривая строится в координатах: - False Positive Rate (FPR):
 
-\[
+\begin{equation}
 \text{FPR} = \frac{\text{FP}}{\text{FP} + \text{TN}},
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1565,17 +1569,17 @@ ROC-кривая строится в координатах: - False Positive Ra
   True Positive Rate (TPR):
 \end{itemize}
 
-\[
+\begin{equation}
 \text{TPR} = \frac{\text{TP}}{\text{TP} + \text{FN}}.
-\]
+\end{equation}
 
 Площадь под ROC-кривой \( \text{AUC-ROC} \) измеряет обобщённое
 качество алгоритма. В задачах кредитного скоринга применяется
 \textbf{индекс Джини}:
 
-\[
+\begin{equation}
 \text{Gini} = 2 \cdot \text{AUC} - 1.
-\]
+\end{equation}
 
 \hypertarget{precision-recall-ux43aux440ux438ux432ux430ux44f-ux438-auc-pr}{%
 \subsubsection*{4. Precision-Recall кривая и
@@ -1586,9 +1590,9 @@ AUC-PR}\label{precision-recall-ux43aux440ux438ux432ux430ux44f-ux438-auc-pr}}
 классификации. Площадь под PR-кривой
 \(( \text{AUC-PR} )\) аппроксимируется через среднюю точность:
 
-\[
-\text{AUC-PR} = \frac{1}{\ell_+} \sum_{k=1}^\ell [y_k = 1] \cdot \text{precision@k}.
-\]
+\begin{equation}
+\text{AUC-PR} = \frac{1}{\ell_+} \sum_{k=1}^\ell [y_k = 1] \cdot \text{precision}.
+\end{equation}
 
 \hypertarget{ux43bux43eux433ux438ux441ux442ux438ux447ux435ux441ux43aux430ux44f-ux440ux435ux433ux440ux435ux441ux441ux438ux44f}{%
 \subsection*{Логистическая
@@ -1606,17 +1610,17 @@ AUC-PR}\label{precision-recall-ux43aux440ux438ux432ux430ux44f-ux438-auc-pr}}
 \) обозначена как \(p(y = +1 \textbar{} x) \). Для алгоритма \(b(x) \),
 возвращающего вероятности, минимизация функционала должна приводить к:
 
-\[
+\begin{equation}
 \arg\min_{b \in \mathbb{R}} \frac{1}{n} \sum_{i=1}^n L(y_i, b) \approx p(y = +1 | x).
-\]
+\end{equation}
 
 Пример: логарифмическая функция потерь позволяет корректно оценивать
 вероятности. Если объект \$x \$встречается \$ n \$ раз, матожидание
 ошибки имеет вид:
 
-\[
+\begin{equation}
 \arg\min_{b \in \mathbb{R}} \left( \frac{k}{n} L(1, b) + \frac{n-k}{n} L(-1, b) \right) = \frac{k}{n},
-\]
+\end{equation}
 
 где \( k \) --- количество объектов класса \( +1 \).
 
@@ -1627,15 +1631,15 @@ AUC-PR}\label{precision-recall-ux43aux440ux438ux432ux430ux44f-ux438-auc-pr}}
 Логистическая функция потерь \( \text{log-loss} \) основана на
 максимизации правдоподобия выборки:
 
-\[
+\begin{equation}
 Q(a, X) = \prod_{i=1}^\ell b(x_i)^{[y_i=+1]} (1 - b(x_i))^{[y_i=-1]}.
-\]
+\end{equation}
 
 Логарифм правдоподобия удобен для оптимизации:
 
-\[
+\begin{equation}
 -\sum_{i=1}^\ell \left( [y_i = +1] \log b(x_i) + [y_i = -1] \log(1 - b(x_i)) \right) \to \min.
-\]
+\end{equation}
 
 Эта функция потерь оптимизирует правдоподобие выборки и обеспечивает
 корректные оценки вероятности.
@@ -1647,22 +1651,22 @@ Q(a, X) = \prod_{i=1}^\ell b(x_i)^{[y_i=+1]} (1 - b(x_i))^{[y_i=-1]}.
 Логистическая регрессия преобразует линейную модель через сигмоидную
 функцию:
 
-\[
+\begin{equation}
 b(x) = \sigma(\langle w, x \rangle), \quad \sigma(z) = \frac{1}{1 + \exp(-z)}.
-\]
+\end{equation}
 
 Скалярное произведение \( \langle w, x \rangle \) интерпретируется как
 логарифм отношения вероятностей классов \( \text{log-odds} \):
 
-\[
+\begin{equation}
 \langle w, x \rangle = \log \frac{p(y = +1 | x)}{p(y = -1 | x)}.
-\]
+\end{equation}
 
 Логистические потери можно выразить следующим образом:
 
-\[
+\begin{equation}
 -\sum_{i=1}^\ell \log(1 + \exp(-y_i \langle w, x_i \rangle)).
-\]
+\end{equation}
 
 Оптимизация этого функционала определяет модель логистической регрессии.
 
@@ -1679,12 +1683,12 @@ b(x) = \sigma(\langle w, x \rangle), \quad \sigma(z) = \frac{1}{1 + \exp(-z)}.
 
 Если выборка линейно разделима, задача SVM записывается как:
 
-\[
+\begin{equation}
 \begin{aligned}
 &\frac{1}{2} \|w\|^2 \to \min_{w, b}, \\
 &y_i (\langle w, x_i \rangle + b) \geq 1, \quad i = 1, \ldots, \ell.
 \end{aligned}
-\]
+\end{equation}
 
 Максимизация ширины разделяющей полосы улучшает обобщающую способность
 классификатора.
@@ -1696,15 +1700,15 @@ b(x) = \sigma(\langle w, x \rangle), \quad \sigma(z) = \frac{1}{1 + \exp(-z)}.
 Если выборка не разделима, вводятся штрафы за нарушения \( \xi_i
 \textgreater{} 0 \):
 
-\[
+\begin{equation}
 y_i (\langle w, x_i \rangle + b) \geq 1 - \xi_i, \quad \xi_i \geq 0.
-\]
+\end{equation}
 
 Оптимизационная задача принимает вид:
 
-\[
+\begin{equation}
 \frac{1}{2} \|w\|^2 + C \sum_{i=1}^\ell \xi_i \to \min_{w, b, \xi}.
-\]
+\end{equation}
 
 Параметр \(C\)регулирует баланс между максимизацией отступа и
 минимизацией штрафов.
@@ -1715,15 +1719,15 @@ y_i (\langle w, x_i \rangle + b) \geq 1 - \xi_i, \quad \xi_i \geq 0.
 
 Штрафы \(\xi_i\) можно выразить через кусочно-линейную функцию потерь \text{hinge loss}:
 
-\[
+\begin{equation}
 \xi_i = \max(0, 1 - y_i (\langle w, x_i \rangle + b)).
-\]
+\end{equation}
 
 Тогда функционал становится:
 
-\[
+\begin{equation}
 \frac{1}{2} \|w\|^2 + C \sum_{i=1}^\ell \max(0, 1 - y_i (\langle w, x_i \rangle + b)) \to \min_{w, b}.
-\]
+\end{equation}
 
 Этот функционал использует верхнюю оценку на долю ошибок с добавлением
 регуляризации.
@@ -1752,9 +1756,9 @@ y_i (\langle w, x_i \rangle + b) \geq 1 - \xi_i, \quad \xi_i \geq 0.
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 a(x) = \arg\max_{k \in \{1, \ldots, K\}} b_k(x).
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1784,9 +1788,9 @@ a(x) = \arg\max_{k \in \{1, \ldots, K\}} b_k(x).
   \textbf{SoftMax}:
 \end{itemize}
 
-\[
+\begin{equation}
 \text{SoftMax}(z_1, \ldots, z_K) = \left( \frac{\exp(z_1)}{\sum_{k=1}^K \exp(z_k)}, \ldots, \frac{\exp(z_K)}{\sum_{k=1}^K \exp(z_k)} \right).
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1794,9 +1798,9 @@ a(x) = \arg\max_{k \in \{1, \ldots, K\}} b_k(x).
   Вероятность принадлежности класса \(k\):
 \end{itemize}
 
-\[
+\begin{equation}
 P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp(\langle w_j, x \rangle + w_{0j})}.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1815,9 +1819,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
   \textbf{Функция потерь:}
 \end{enumerate}
 
-\[
+\begin{equation}
 \max_k \{ \langle w_k, x \rangle + 1 - [k = y(x)] \} - \langle w_{y(x)}, x \rangle.
-\]
+\end{equation}
 
 Потери равны нулю, если разрыв между правильным и другими классами
 превышает 1.
@@ -1836,9 +1840,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 \frac{1}{2} \|W\|^2 \to \min_W, \quad \langle w_{y_i}, x_i \rangle + [y_i = k] - \langle w_k, x_i \rangle > 1.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1854,9 +1858,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 \frac{1}{2} \|W\|^2 + C \sum_{i=1}^\ell \xi_i \to \min_{W, \xi}.
-\]
+\end{equation}
 
 \hypertarget{ux43cux435ux442ux440ux438ux43aux438-ux43aux430ux447ux435ux441ux442ux432ux430-ux43cux43dux43eux433ux43eux43aux43bux430ux441ux441ux43eux432ux43eux439-ux43aux43bux430ux441ux441ux438ux444ux438ux43aux430ux446ux438ux438}{%
 \subsubsection*{Метрики качества многоклассовой
@@ -1874,9 +1878,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
 \item
   Микро:
 \end{itemize}
-\[
+\begin{equation}
 \text{precision} = \frac{\text{TP}}{\text{TP} + \text{FP}}.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1884,9 +1888,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
   Макро:
 \end{itemize}
 
-\[
+\begin{equation}
 \text{precision} = \frac{1}{K} \sum_{k=1}^K \frac{\text{TP}_k}{\text{TP}_k + \text{FP}_k}.
-\]
+\end{equation}
 
 \hypertarget{ux43aux43bux430ux441ux441ux438ux444ux438ux43aux430ux446ux438ux44f-ux441-ux43fux435ux440ux435ux441ux435ux43aux430ux44eux449ux438ux43cux438ux441ux44f-ux43aux43bux430ux441ux441ux430ux43cux438-multi-label}{%
 \subsection*{Классификация с пересекающимися классами
@@ -1927,9 +1931,9 @@ P(y = k | x, w) = \frac{\exp(\langle w_k, x \rangle + w_{0k})}{\sum_{j=1}^K \exp
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 Y = U \Sigma V^\top.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1948,9 +1952,9 @@ Y = U \Sigma V^\top.
   \textbf{Хэмминговая метрика:}
 \end{enumerate}
 
-\[
+\begin{equation}
 \text{hamming}(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell \frac{|Y_i \setminus Z_i| + |Z_i \setminus Y_i|}{K}.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1966,9 +1970,9 @@ Y = U \Sigma V^\top.
   \end{itemize}
 
 
-\[
+\begin{equation}
 \text{accuracy}(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell \frac{|Y_i \cap Z_i|}{|Y_i \cup Z_i|}.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -1976,9 +1980,9 @@ Y = U \Sigma V^\top.
   Полнота:
 \end{itemize}
 
-\[
+\begin{equation}
 \text{recall}(a, X) = \frac{1}{\ell} \sum_{i=1}^\ell \frac{|Y_i \cap Z_i|}{|Y_i|}.
-\]
+\end{equation}
 
 \hypertarget{ux43aux430ux442ux435ux433ux43eux440ux438ux430ux43bux44cux43dux44bux435-ux43fux440ux438ux437ux43dux430ux43aux438-1}{%
 \subsection*{Категориальные
@@ -2012,9 +2016,11 @@ Y = U \Sigma V^\top.
   \end{itemize}
 \end{enumerate}
 
-\[
-\text{counts}(u, X) = \sum_{(x, y) \in X} [f(x) = u], \quad \text{successes}_k(u, X) = \sum_{(x, y) \in X} [f(x) = u][y = k].
-\]
+\begin{equation}
+    \begin{aligned}
+    \text{counts}(u, X) = \sum_{(x, y) \in X} [f(x) = u], \\\text{successes}_k(u, X) = \sum_{(x, y) \in X} [f(x) = u][y = k].        
+    \end{aligned}
+\end{equation}
 
     Признаки оценивают вероятность \(p(y = k | f(x))\).
 
@@ -2071,9 +2077,9 @@ Y = U \Sigma V^\top.
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 G = 1 - \sum_{k=1}^K p_k^2,
-\]
+\end{equation}
 
 где \(p_k\) --- доля объектов класса \(k\). 
 
@@ -2084,9 +2090,9 @@ G = 1 - \sum_{k=1}^K p_k^2,
 \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
 H = - \sum_{k=1}^K p_k \log(p_k).
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -2095,9 +2101,9 @@ H = - \sum_{k=1}^K p_k \log(p_k).
   \textbf{среднеквадратичная ошибка}:
 \end{itemize}
 
-\[ 
+\begin{equation} 
 MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2495,15 +2501,15 @@ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2.
   \end{itemize}
 \end{enumerate}
 
-\[ 
+\begin{equation} 
      w_i^{(1)} = \frac{1}{N}, 
-\]
+\end{equation}
 
 где \(N\) --- количество объектов. - Ошибка текущей модели:
 
-\[ 
+\begin{equation} 
      \varepsilon_t = \frac{\sum_{i=1}^N w_i^{(t)} \cdot [y_i \neq h_t(x_i)]}{\sum_{i=1}^N w_i^{(t)}}.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -2511,9 +2517,9 @@ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2.
   Коэффициент модели:
 \end{itemize}
 
-\[ 
+\begin{equation} 
      \alpha_t = \frac{1}{2} \ln\left(\frac{1 - \varepsilon_t}{\varepsilon_t}\right).
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -2521,9 +2527,9 @@ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2.
   Обновление весов:
 \end{itemize}
 
-\[
+\begin{equation}
      w_i^{(t+1)} = w_i^{(t)} \cdot \exp\left(-\alpha_t \cdot y_i \cdot h_t(x_i)\right).
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2533,9 +2539,9 @@ MSE = \frac{1}{n} \sum_{i=1}^n (y_i - \hat{y})^2.
   Итоговый ансамбль:
 \end{enumerate}
 
-\[
+\begin{equation}
    H(x) = \text{sign} \left( \sum_{t=1}^T \alpha_t \cdot h_t(x) \right).
-\]
+\end{equation}
 
 \hypertarget{ux433ux440ux430ux434ux438ux435ux43dux442ux43dux44bux439-ux431ux443ux441ux442ux438ux43dux433-gradient-boosting}{%
 \subsubsection*{Градиентный бустинг (Gradient
@@ -2568,9 +2574,9 @@ Boosting)}\label{ux433ux440ux430ux434ux438ux435ux43dux442ux43dux44bux439-ux431ux
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
      r_i^{(t)} = -\frac{\partial L(y_i, F(x_i))}{\partial F(x_i)},
-\]
+\end{equation}
 
 
  где \(L(y, F(x))\) — функция потерь.
@@ -2579,9 +2585,9 @@ Boosting)}\label{ux433ux440ux430ux434ux438ux435ux43dux442ux43dux44bux439-ux431ux
 \begin{itemize}
 \tightlist
 \item
-  Новый прогноз: \[
+  Новый прогноз: \begin{equation}
   F_{t+1}(x) = F_t(x) + \eta \cdot h_t(x),
-  \]
+  \end{equation}
 \end{itemize}
 
 где \(\eta\) --- шаг обучения, \(h_t(x)\) --- новое дерево.
@@ -2594,9 +2600,9 @@ Boosting)}\label{ux433ux440ux430ux434ux438ux435ux43dux442ux43dux44bux439-ux431ux
   Итоговый ансамбль:
 \end{enumerate}
 
-\[
+\begin{equation}
    F_T(x) = \sum_{t=1}^T \eta \cdot h_t(x).
-\]
+\end{equation}
 
 \hypertarget{ux441ux442ux43eux445ux430ux441ux442ux438ux447ux435ux441ux43aux438ux439-ux433ux440ux430ux434ux438ux435ux43dux442ux43dux44bux439-ux431ux443ux441ux442ux438ux43dux433-stochastic-gradient-boosting}{%
 \subsubsection*{Стохастический градиентный бустинг (Stochastic Gradient
@@ -2690,9 +2696,9 @@ Boosting)}\label{ux441ux442ux43eux445ux430ux441ux442ux438ux447ux435ux441ux43aux4
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
      L(y, F(x)) = \frac{1}{N} \sum_{i=1}^N (y_i - F(x_i))^2.
-\]
+\end{equation}
 
 \begin{itemize}
 \tightlist
@@ -2700,9 +2706,9 @@ Boosting)}\label{ux441ux442ux43eux445ux430ux441ux442ux438ux447ux435ux441ux43aux4
   MAE (средняя абсолютная ошибка):
 \end{itemize}
 
-\[
+\begin{equation}
      L(y, F(x)) = \frac{1}{N} \sum_{i=1}^N |y_i - F(x_i)|.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2718,9 +2724,9 @@ Boosting)}\label{ux441ux442ux43eux445ux430ux441ux442ux438ux447ux435ux441ux43aux4
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
      L(y, F(x)) = - \frac{1}{N} \sum_{i=1}^N \left( y_i \log p_i + (1 - y_i) \log (1 - p_i) \right).
-\]
+\end{equation}
 
 \hypertarget{ux433ux438ux43fux435ux440ux43fux430ux440ux430ux43cux435ux442ux440ux44b-ux431ux443ux441ux442ux438ux43dux433ux430}{%
 \subsubsection*{Гиперпараметры
@@ -2887,16 +2893,16 @@ Filtering)}\label{ux43aux43eux43bux43bux430ux431ux43eux440ux430ux442ux438ux432ux
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
      \text{similarity}(u, v) = \frac{\sum_{i=1}^N r_{ui} \cdot r_{vi}}{\sqrt{\sum_{i=1}^N r_{ui}^2} \cdot \sqrt{\sum_{i=1}^N r_{vi}^2}},
-\]
+\end{equation}
 
 где \( r_{ui} \) --- рейтинг пользователя \( u \) для объекта \( i \). -
 Матричная факторизация (SVD):
 
-\[
+\begin{equation}
      R \approx U \cdot V^\top,
-\]
+\end{equation}
 
 где \(R \) --- матрица рейтингов, \( U \) и \( V \) --- латентные матрицы
 пользователей и объектов.
@@ -2963,9 +2969,9 @@ Filtering)}\label{ux43aux43eux43dux442ux435ux43dux442ux43dux430ux44f-ux444ux438u
   \end{itemize}
 \end{enumerate}
 
-\[
+\begin{equation}
      \text{tf-idf}(t, d) = \text{tf}(t, d) \cdot \log\frac{N}{\text{df}(t)},
-\]
+\end{equation}
 
 
  где \( \text{tf}(t, d) \) — частота термина \( t \) в документе \( d \), \( \text{df}(t) \) — количество документов, содержащих термин \( t \).
@@ -3094,9 +3100,9 @@ Systems)}\label{ux433ux438ux431ux440ux438ux434ux43dux44bux435-ux441ux438ux441ux4
   \textbf{DCG (Discounted Cumulative Gain):}
 \end{enumerate}
 
-\[
+\begin{equation}
    \text{DCG}_p = \sum_{i=1}^p \frac{2^{\text{rel}_i} - 1}{\log_2(i + 1)},
-\]
+\end{equation}
 
 где \( \text{rel}_i \) --- релевантность объекта на позиции \(i \).
 
@@ -3108,9 +3114,9 @@ Systems)}\label{ux433ux438ux431ux440ux438ux434ux43dux44bux435-ux441ux438ux441ux4
   \textbf{NDCG (Normalized DCG):}
 \end{enumerate}
 
-\[
+\begin{equation}
    \text{NDCG}_p = \frac{\text{DCG}_p}{\text{IDCG}_p},
-\]
+\end{equation}
 
 где \( \text{IDCG}_p \) --- идеальная DCG.
 
@@ -3122,9 +3128,9 @@ Systems)}\label{ux433ux438ux431ux440ux438ux434ux43dux44bux435-ux441ux438ux441ux4
   \textbf{Precision@K:}
 \end{enumerate}
 
-\[
+\begin{equation}
    \text{Precision@K} = \frac{\text{количество релевантных объектов в топ-K}}{K}.
-\]
+\end{equation}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -3134,9 +3140,9 @@ Systems)}\label{ux433ux438ux431ux440ux438ux434ux43dux44bux435-ux441ux438ux441ux4
   \textbf{MAP (Mean Average Precision):}
 \end{enumerate}
 
-\[
+\begin{equation}
    \text{MAP} = \frac{1}{N} \sum_{q=1}^N \frac{1}{m_q} \sum_{k=1}^{m_q} \text{Precision@k},
-\]
+\end{equation}
 
 где \( N \) --- количество запросов, \( m_q \) --- количество релевантных
 объектов для запроса \( q \).
