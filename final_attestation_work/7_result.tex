@@ -740,17 +740,24 @@ Léon: The Professional
 моделей}\label{ux441ux440ux430ux432ux43dux435ux43dux438ux435-ux43cux43eux434ux435ux43bux435ux439}}
 
 
-\resizebox{\linewidth}{!}{%
-\begin{tabular}{|>{\raggedright\arraybackslash}p{0.12\linewidth}|>{\raggedright\arraybackslash}p{0.18\linewidth}|>{\raggedright\arraybackslash}p{0.50\linewidth}|>{\raggedright\arraybackslash}p{0.10\linewidth}|>{\raggedright\arraybackslash}p{0.10\linewidth}|}
-\hline
-Модель & Применение & Преимущества & Метрика & Результат \\
-\hline
-UserKNN & Персональные рекомендации & Высокая точность для активных пользователей; учитывает реальное поведение & NDCG@10 & 0.8465 \\
-\hline
-Content-based & Поиск и связанные фильмы & Решает задачу поиска и рекомендации схожих фильмов; подходит для новых пользователей & Ручная проверка & Высокая релевантность \\
-\hline
-\end{tabular}%
-}
+\begin{enumerate}
+    \item Модель: UserKNN  
+    \begin{itemize}
+        \item Применение: Персональные рекомендации.
+        \item Преимущества: Высокая точность для активных пользователей; учитывает реальное поведение.
+        \item Метрика: NDCG@10.
+        \item Результат: 0.8465.
+    \end{itemize}
+    \item Модель: Content-based  
+    \begin{itemize}
+        \item Применение: Поиск и связанные фильмы.
+        \item Преимущества: Решает задачу поиска и рекомендации схожих фильмов; подходит для новых пользователей.
+        \item Метрика: Ручная проверка.
+        \item Результат: Высокая релевантность.
+    \end{itemize}
+\end{enumerate}
+
+
 
 \hypertarget{ux43fux43eux447ux435ux43cux443-ux438ux43cux435ux43dux43dux43e-ux44dux442ux438-ux43fux43eux434ux445ux43eux434ux44b}{%
 \subsection*{Почему именно эти
