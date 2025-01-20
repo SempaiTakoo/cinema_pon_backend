@@ -325,18 +325,18 @@ API предоставляет доступ к информации о филь�
 Реализованы две модели: 
 \begin{enumerate}
 \item
-\textbf{UserKNN} --- для персонализированных
+UserKNN --- для персонализированных
 рекомендаций на основе пользовательской истории оценок. 
 
 \item
-\textbf{Content-based} --- для поиска фильмов и формирования
+Content-based --- для поиска фильмов и формирования
 рекомендаций к конкретному фильму на основе его содержимого.
 \end{enumerate}
 
 \hypertarget{ux434ux430ux442ux430ux441ux435ux442}{%
 \subsection*{Датасет}\label{ux434ux430ux442ux430ux441ux435ux442}}
 
-Датасет \textbf{MovieLens 100k} содержит: 
+Датасет MovieLens 100k содержит: 
 \begin{itemize}
 \item 
 100,000 оценок фильмов от
@@ -358,7 +358,9 @@ API предоставляет доступ к информации о филь�
 фильтрация)}\label{userknn-ux43aux43eux43bux43bux430ux431ux43eux440ux430ux442ux438ux432ux43dux430ux44f-ux444ux438ux43bux44cux442ux440ux430ux446ux438ux44f}}
 
 \hypertarget{ux43eux43fux438ux441ux430ux43dux438ux435-1}{%
-\paragraph{Описание:}\label{ux43eux43fux438ux441ux430ux43dux438ux435-1}}
+\paragraph{Описание}\label{ux43eux43fux438ux441ux430ux43dux438ux435-1}}
+
+\leavevmode
 
 UserKNN --- метод, который находит схожих пользователей (соседей) на
 основе их рейтингов фильмов. Рекомендации генерируются на основе
@@ -371,7 +373,7 @@ UserKNN?}\label{ux43fux43eux447ux435ux43cux443-userknn}}
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Обоснование выбора}:
+  Обоснование выбора:
 
   \begin{itemize}
   \tightlist
@@ -383,7 +385,7 @@ UserKNN?}\label{ux43fux43eux447ux435ux43cux443-userknn}}
     попал в список рекомендаций.
   \end{itemize}
 \item
-  \textbf{Особенности}:
+  Особенности:
 
   \begin{itemize}
   \tightlist
@@ -398,11 +400,10 @@ UserKNN?}\label{ux43fux43eux447ux435ux43cux443-userknn}}
 
 \hypertarget{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux438-ndcg10}{%
 \paragraph{Метрика оценки:
-NDCG@10}\label{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux438-ndcg10}}
+NDCG@10}\label{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux438-ndcg10}} 
 
-\begin{itemize}
-\tightlist
-\item
+\leavevmode
+
   \textbf{Почему NDCG?}
 
   \begin{itemize}
@@ -415,7 +416,7 @@ NDCG@10}\label{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux43
     пользователей, которые чаще всего обращают внимание только на первые
     позиции.
   \end{itemize}
-\end{itemize}
+
 
 \hypertarget{ux440ux435ux437ux443ux43bux44cux442ux430ux442}{%
 \paragraph{Результат}\label{ux440ux435ux437ux443ux43bux44cux442ux430ux442}}
@@ -423,7 +424,7 @@ NDCG@10}\label{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux43
 \begin{itemize}
 \tightlist
 \item
-  \textbf{NDCG@10 = 0.8465} --- высокая релевантность рекомендаций.
+  NDCG@10 = 0.8465 --- высокая релевантность рекомендаций.
 \end{itemize}
 
 \hypertarget{content-based-ux43aux43eux43dux442ux435ux43dux442ux43dux430ux44f-ux444ux438ux43bux44cux442ux440ux430ux446ux438ux44f}{%
@@ -431,7 +432,9 @@ NDCG@10}\label{ux43cux435ux442ux440ux438ux43aux430-ux43eux446ux435ux43dux43aux43
 фильтрация)}\label{content-based-ux43aux43eux43dux442ux435ux43dux442ux43dux430ux44f-ux444ux438ux43bux44cux442ux440ux430ux446ux438ux44f}}
 
 \hypertarget{ux43eux43fux438ux441ux430ux43dux438ux435-2}{%
-\paragraph{Описание:}\label{ux43eux43fux438ux441ux430ux43dux438ux435-2}}
+\paragraph{Описание}\label{ux43eux43fux438ux441ux430ux43dux438ux435-2}}
+
+\leavevmode
 
 Content-based модель использует метаданные фильмов (жанры, описание, год
 выпуска) для вычисления их сходства.\\
@@ -445,7 +448,7 @@ Content-based модель использует метаданные фильм�
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Сценарий использования}:
+  Сценарий использования:
 
   \begin{itemize}
   \tightlist
@@ -467,7 +470,7 @@ Content-based?}\label{ux43fux43eux447ux435ux43cux443-content-based}}
 \begin{itemize}
 \tightlist
 \item
-  \textbf{Обоснование выбора}:
+  Обоснование выбора:
 
   \begin{itemize}
   \tightlist
@@ -509,69 +512,71 @@ Content-based?}\label{ux43fux43eux447ux435ux43cux443-content-based}}
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Исходный фильм}: В данном примере пользователем выбран фильм с
-  \texttt{movieId\ =\ 296}, что соответствует фильму \emph{Pulp Fiction
-  (1994)}, как видно из таблицы ниже.
+  Исходный фильм: В данном примере пользователем выбран фильм с
+  movieId\ =\ 296, что соответствует фильму Pulp Fiction
+  (1994), как видно из таблицы ниже.
 \item
-  \textbf{Список рекомендаций}: Для оценки релевантности рекомендаций
+  Список рекомендаций: Для оценки релевантности рекомендаций
   можно рассмотреть предложенные фильмы:
 
   \begin{itemize}
   \tightlist
   \item
-    \textbf{Reservoir Dogs (1992)} --- режиссером этого фильма, как и
-    \emph{Pulp Fiction}, является Квентин Тарантино, что делает его
+    Reservoir Dogs (1992) --- режиссером этого фильма, как и
+    Pulp Fiction, является Квентин Тарантино, что делает его
     релевантной рекомендацией для фанатов стиля этого режиссера.
   \item
-    \textbf{The Big Lebowski (1998)} --- культовый фильм с элементами
+    The Big Lebowski (1998) --- культовый фильм с элементами
     черного юмора и необычным повествованием. Хотя он не от того же
-    режиссера, но схож с \emph{Pulp Fiction} по тональности и подходу к
+    режиссера, но схож с Pulp Fiction по тональности и подходу к
     диалогам.
   \item
-    \textbf{Léon: The Professional (1994)} --- еще один культовый фильм
+    Léon: The Professional (1994) --- еще один культовый фильм
     1990-х с напряженным сюжетом, сильными персонажами и отличной
     драматической составляющей. Хорошо дополняет список для любителей
     криминальных драм.
   \item
-    \textbf{Fight Club (1999)} --- фильм с глубоким философским
+    Fight Club (1999) --- фильм с глубоким философским
     подтекстом, сложной сюжетной структурой и культом стиля 90-х. Вполне
     релевантен.
   \item
-    \textbf{La Femme Nikita (1990)} --- фильм о криминальной среде, с
-    напряженной драмой, который имеет схожие элементы с \emph{Pulp
-    Fiction}.
+    La Femme Nikita (1990) --- фильм о криминальной среде, с
+    напряженной драмой, который имеет схожие элементы с Pulp
+    Fiction.
   \item
-    \textbf{The Hateful Eight (2015)} --- фильм от того же режиссера
+    The Hateful Eight (2015) --- фильм от того же режиссера
     (Квентин Тарантино), что напрямую делает его релевантным для
     фанатов.
   \item
-    \textbf{Django Unchained (2012)} --- еще один фильм Тарантино с
+    Django Unchained (2012) --- еще один фильм Тарантино с
     уникальным стилем повествования, юмором и криминальной драмой, что
     делает его идеально подходящим.
   \item
-    \textbf{Funny Games U.S. (2007)} --- психологический триллер,
-    который менее связан с \emph{Pulp Fiction}, но может понравиться
+    Funny Games U.S. (2007) --- психологический триллер,
+    который менее связан с Pulp Fiction, но может понравиться
     любителям напряженного и мрачного кинематографа.
   \item
-    \textbf{The Social Network (2010)} --- рекомендация менее
+    The Social Network (2010) --- рекомендация менее
     релевантна, поскольку это больше биографическая драма о
     технологическом стартапе, а не криминальная драма.
   \item
-    \textbf{In Bruges (2008)} --- черная комедия с сильным криминальным
+    In Bruges (2008) --- черная комедия с сильным криминальным
     сюжетом и необычными персонажами, что делает ее очень подходящей
     рекомендацией.
   \end{itemize}
 \end{enumerate}
 
 \hypertarget{ux438ux442ux43eux433}{%
-\subparagraph{Итог:}\label{ux438ux442ux43eux433}}
+\subparagraph{Итог}\label{ux438ux442ux43eux433}}
+
+\leavevmode
 
 Большинство рекомендаций можно считать весьма релевантными, особенно те,
-которые связаны с фильмами Квентина Тарантино (\emph{Reservoir Dogs},
-\emph{The Hateful Eight}, \emph{Django Unchained}), а также культовые
-криминальные драмы и фильмы с черным юмором (\emph{In Bruges},
-\emph{Fight Club}). Некоторые фильмы, такие как \emph{The Social
-Network}, могут быть менее подходящими в этом контексте, но их включение
+которые связаны с фильмами Квентина Тарантино Reservoir Dogs,
+The Hateful Eight, Django Unchained), а также культовые
+криминальные драмы и фильмы с черным юмором (In Bruges,
+Fight Club). Некоторые фильмы, такие как The Social
+Network, могут быть менее подходящими в этом контексте, но их включение
 может быть связано с особенностями модели (например, схожими ключевыми
 словами).
 
@@ -582,64 +587,66 @@ Network}, могут быть менее подходящими в этом ко
 \end{figure}
 
 \hypertarget{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-the-lion-king-1994}{%
-\subsubsection*{\texorpdfstring{Оценка рекомендаций для фильма \emph{The
+\subsubsection*{\texorpdfstring{Оценка рекомендаций для фильма The
 Lion King
-(1994)}}{Оценка рекомендаций для фильма The Lion King (1994)}}\label{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-the-lion-king-1994}}
+(1994)}{Оценка рекомендаций для фильма The Lion King (1994)}}\label{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-the-lion-king-1994}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Исходный фильм}: В примере используется фильм \emph{The Lion
-  King (1994)}, жанры которого включают ``приключения'', ``анимация'',
+  Исходный фильм: В примере используется фильм The Lion
+  King (1994), жанры которого включают ``приключения'', ``анимация'',
   ``детский'', ``драма'', ``мюзикл'', ``воображение''.
 \item
-  \textbf{Список рекомендаций}:
+  Список рекомендаций:
 
   \begin{itemize}
   \tightlist
   \item
-    \textbf{Pete's Dragon (1977)} --- семейный фильм с элементами
-    приключений и фантазии, что соответствует жанрам \emph{The Lion
-    King}. Рекомендация релевантна.
+    Pete's Dragon (1977) --- семейный фильм с элементами
+    приключений и фантазии, что соответствует жанрам The Lion
+    King. Рекомендация релевантна.
   \item
-    \textbf{Dumbo (1941)} --- анимационный фильм Disney, ориентированный
+    Dumbo (1941) --- анимационный фильм Disney, ориентированный
     на детей, с трогательной сюжетной линией. Подходит к характеристикам
     исходного фильма.
   \item
-    \textbf{Aladdin (1992)} --- анимационный мюзикл Disney с
+    Aladdin (1992) --- анимационный мюзикл Disney с
     приключениями и элементами воображения. Очень релевантен как по
     жанрам, так и по стилю.
   \item
-    \textbf{101 Dalmatians (1961)} --- классический фильм Disney с
-    акцентом на приключения и детей. Хорошо сочетается с \emph{The Lion
-    King}.
+    101 Dalmatians (1961) --- классический фильм Disney с
+    акцентом на приключения и детей. Хорошо сочетается с The Lion
+    King.
   \item
-    \textbf{The Jungle Book (1967)} --- фильм, связанный с темами
+    The Jungle Book (1967) --- фильм, связанный с темами
     природы, приключений и животных. Практически идеальная рекомендация.
   \item
-    \textbf{The Fox and the Hound (1981)} --- трогательная история о
+    The Fox and the Hound (1981) --- трогательная история о
     дружбе животных, которая перекликается с эмоциональными темами
-    \emph{The Lion King}. Рекомендация весьма релевантна.
+    The Lion King. Рекомендация весьма релевантна.
   \item
-    \textbf{The Aristocats (1970)} --- анимационный фильм о
+    The Aristocats (1970) --- анимационный фильм о
     приключениях, ориентированный на детей. Тематически близок и
     релевантен.
   \item
-    \textbf{Beauty and the Beast (1991)} --- анимационный мюзикл Disney
+    Beauty and the Beast (1991) --- анимационный мюзикл Disney
     с драматической сюжетной линией. Очень релевантная рекомендация.
   \item
-    \textbf{Alice in Wonderland (1951)} --- приключения в мире фантазий,
-    схожи с элементами воображения \emph{The Lion King}. Рекомендация
+    Alice in Wonderland (1951) --- приключения в мире фантазий,
+    схожи с элементами воображения The Lion King. Рекомендация
     уместна.
   \item
-    \textbf{Snow White and the Seven Dwarfs (1937)} --- первый
+    Snow White and the Seven Dwarfs (1937) --- первый
     анимационный фильм Disney, с похожими элементами сказочной драмы и
     мюзикла. Подходит как тематически, так и стилистически.
   \end{itemize}
 \end{enumerate}
 
 \hypertarget{ux438ux442ux43eux433-1}{%
-\subparagraph{Итог:}\label{ux438ux442ux43eux433-1}}
+\subparagraph{Итог}\label{ux438ux442ux43eux433-1}}
+
+\leavevmode
 
 Все предложенные фильмы можно считать высоко релевантными, поскольку они
 либо принадлежат студии Disney, либо имеют схожие жанровые
@@ -655,74 +662,76 @@ Lion King
 
 \hypertarget{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-luxe9on-the-professional-1994}{%
 \subsubsection*{\texorpdfstring{Оценка рекомендаций для фильма
-\emph{Léon: The Professional
-(1994)}}{Оценка рекомендаций для фильма Léon: The Professional (1994)}}\label{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-luxe9on-the-professional-1994}}
+Léon: The Professional
+(1994)}{Оценка рекомендаций для фильма Léon: The Professional (1994)}}\label{ux43eux446ux435ux43dux43aux430-ux440ux435ux43aux43eux43cux435ux43dux434ux430ux446ux438ux439-ux434ux43bux44f-ux444ux438ux43bux44cux43cux430-luxe9on-the-professional-1994}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
 \item
-  \textbf{Исходный фильм}: В примере используется фильм \emph{Léon: The
-  Professional (1994)}
+  Исходный фильм: В примере используется фильм Léon: The
+  Professional (1994)
 \item
-  \textbf{Список рекомендаций}:
+  Список рекомендаций:
 
   \begin{itemize}
   \tightlist
   \item
-    \textbf{Femme Nikita, La (1990)} --- фильм о наемной убийце с
+    Femme Nikita, La (1990) --- фильм о наемной убийце с
     напряженным драматическим сюжетом. Очень схож по тематике и стилю с
-    \emph{Léon}. Рекомендация релевантна.
+    Léon. Рекомендация релевантна.
   \item
-    \textbf{Grosse Pointe Blank (1997)} --- черная комедия с элементами
+    Grosse Pointe Blank (1997) --- черная комедия с элементами
     боевика о профессиональном убийце. Хотя этот фильм более легкий по
     настроению, он пересекается с темой профессиональных убийц.
     Рекомендация умеренно релевантна.
   \item
-    \textbf{The Negotiator (1998)} --- напряженный триллер с
+    The Negotiator (1998) --- напряженный триллер с
     криминальной сюжетной линией и динамичным действием. Отличный выбор
-    для поклонников \emph{Léon}. Рекомендация релевантна.
+    для поклонников Léon. Рекомендация релевантна.
   \item
-    \textbf{Taxi Driver (1976)} --- культовый триллер-драма о социально
+    Taxi Driver (1976) --- культовый триллер-драма о социально
     отчужденном человеке с элементами насилия и напряжения. Идеально
     подходит как рекомендация по настроению и стилю.
   \item
-    \textbf{Infernal Affairs (2002)} --- криминальная драма о мафиози и
+    Infernal Affairs (2002) --- криминальная драма о мафиози и
     полицейских. Схожий напряженный тон и глубокая драма. Рекомендация
     уместна.
   \item
-    \textbf{The Bourne Ultimatum (2007)} --- боевик с акцентом на
+    The Bourne Ultimatum (2007) --- боевик с акцентом на
     шпионскую тему и динамику. Несмотря на отличие в жанре, фильм
-    перекликается с \emph{Léon} элементами боевика. Рекомендация
+    перекликается с Léon элементами боевика. Рекомендация
     умеренно релевантна.
   \item
-    \textbf{Serpico (1973)} --- напряженная криминальная драма о борьбе
+    Serpico (1973) --- напряженная криминальная драма о борьбе
     с коррупцией в полиции. Хотя здесь нет профессиональных убийц, фильм
     подходит для поклонников криминального жанра. Рекомендация условно
     релевантна.
   \item
-    \textbf{Day of the Jackal (1973)} --- триллер о наемном убийце с
-    продуманным сюжетом. Очень близко по теме к \emph{Léon}.
+    Day of the Jackal (1973) --- триллер о наемном убийце с
+    продуманным сюжетом. Очень близко по теме к Léon.
     Рекомендация релевантна.
   \item
-    \textbf{American Gangster (2007)} --- криминальная драма,
+    American Gangster (2007) --- криминальная драма,
     сосредоточенная на мафиози и преступном мире. Фильм схож жанрово, но
     не столь близок по сюжету. Рекомендация умеренно релевантна.
   \item
-    \textbf{In the Line of Fire (1993)} --- триллер о защите президента,
+    In the Line of Fire (1993) --- триллер о защите президента,
     с элементами криминального жанра. Сюжетно не так близок, но может
     быть интересен любителям напряженных историй. Умеренно релевантно.
   \end{itemize}
 \end{enumerate}
 
 \hypertarget{ux438ux442ux43eux433-2}{%
-\subparagraph{Итог:}\label{ux438ux442ux43eux433-2}}
+\subparagraph{Итог}\label{ux438ux442ux43eux433-2}}
+
+\leavevmode
 
 Рекомендации в целом достаточно релевантны исходному фильму, особенно
-такие фильмы, как \emph{Femme Nikita, La (1990)}, \emph{Taxi Driver
-(1976)}, \emph{Day of the Jackal (1973)} и \emph{The Negotiator (1998)}.
-Они разделяют ключевые элементы с \emph{Léon}, такие как криминальный
+такие фильмы, как Femme Nikita, La (1990), Taxi Driver
+(1976), Day of the Jackal (1973) и The Negotiator (1998).
+Они разделяют ключевые элементы с Léon, такие как криминальный
 мир, напряжение и сильные персонажи. Менее релевантными выглядят фильмы
-вроде \emph{The Bourne Ultimatum} и \emph{In the Line of Fire}, которые
+вроде The Bourne Ultimatum и In the Line of Fire, которые
 отличаются по тематике и жанру, но все равно могут быть интересны
 поклонникам криминальных драм и боевиков.
 
@@ -736,9 +745,9 @@ Lion King
 \hline
 Модель & Применение & Преимущества & Метрика & Результат \\
 \hline
-\textbf{UserKNN} & Персональные рекомендации & Высокая точность для активных пользователей; учитывает реальное поведение & NDCG@10 & \textbf{0.8465} \\
+UserKNN & Персональные рекомендации & Высокая точность для активных пользователей; учитывает реальное поведение & NDCG@10 & 0.8465 \\
 \hline
-\textbf{Content-based} & Поиск и связанные фильмы & Решает задачу поиска и рекомендации схожих фильмов; подходит для новых пользователей & Ручная проверка & Высокая релевантность \\
+Content-based & Поиск и связанные фильмы & Решает задачу поиска и рекомендации схожих фильмов; подходит для новых пользователей & Ручная проверка & Высокая релевантность \\
 \hline
 \end{tabular}%
 }
@@ -751,7 +760,7 @@ Lion King
 \def\labelenumi{\arabic{enumi}.}
 \tightlist
 \item
-  \textbf{UserKNN}:
+  UserKNN:
 
   \begin{itemize}
   \tightlist
@@ -763,7 +772,7 @@ Lion King
     полезные списки рекомендаций.
   \end{itemize}
 \item
-  \textbf{Content-based}:
+  Content-based:
 
   \begin{itemize}
   \tightlist
@@ -782,11 +791,11 @@ Lion King
 \begin{itemize}
 \tightlist
 \item
-  \textbf{UserKNN} показал себя как высокоэффективная модель для
+  UserKNN показал себя как высокоэффективная модель для
   формирования персонализированных рекомендаций. Метрика NDCG@10
   подтверждает качество списка рекомендаций.
 \item
-  \textbf{Content-based} --- ключевое решение для задач поиска и
+  Content-based --- ключевое решение для задач поиска и
   формирования рекомендаций к конкретному фильму. Она позволяет гибко
   учитывать содержание фильмов, обеспечивая высокую релевантность.
 \end{itemize}
